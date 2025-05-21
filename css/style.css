@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'yg-jalnan';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html{font-family:'yg-jalnan' ;}
+.container{width: 1200px; height: 800px; background-color: rgb(181, 244, 255); margin: auto;
+position: fixed; transform: translate(-50%,-50%); top: 50%; left: 50%;}
+
+header{}
+footer{}
+.content{}
+
+/* login */
+.container.login{background-image: url('../img/visual_bg_pc.png'); background-size: contain; 
+     background-position: center; background-repeat: no-repeat; margin: auto; background-color: rgb(181, 244, 255);}
+
+
+
+/* main */
+.container.main{}
+.main header{height: 80px; background-color: #111; }
+.main header span{background-image: url('../img/Group_1-removebg-preview.png'); width: 200px; height: 80px; 
+    background-position: center; background-repeat: no-repeat;
+    background-size: contain; margin: auto; display: block;}
+.main footer{}
+
+.container.main .content{width: 100%; height: calc(800px - 80px); display: flex;}
+.container.main .sideBoxL{width: 35%; background-color: #222; height: 100%; }
+.container.main .profileBox{background-color: #444; padding: 30px 0; text-align: center; margin: 20px;}
+.container.main .profileBox .img{background-image: url('../img/animal2.png'); width: 200px; height: 200px; 
+    background-size: contain; background-repeat: no-repeat; background-position: center; margin: auto;
+border: 2px solid #777; border-radius: 50%; }
+.container.main .profileBox .textBox{text-align: center;  padding: 30px 0 0 0;}
+.container.main .profileBox .textBox p{margin-bottom: 4px;}
+.container.main .profileBox .textBox .blue{color: skyblue;}
+.container.main .profileBox .textBox .red{ color: rgb(255, 107, 132);}
+.container.main .profileBox .textBox .yellow{ color: rgb(255, 218, 107);}
+.container.main .profileBox .createRommBtn{background-image: url("../img/Group 22.png"); cursor: pointer;
+    background-position: center; background-repeat: no-repeat; background-size: contain; width: 200px; height: 80px; margin: auto;}
+.container.main .profileBox .createRommBtn:hover{background-image: url("../img/Group 23.png");}
+    .container.main .RankBox{background-color: #555; margin: 20px; min-height: 226px;}
+.container.main .sideBoxR{width: 65%; background-color: #333; height: 100%;}
+.container.main .sideBoxR .roomList{height: 660px; overflow: hidden; padding: 20px; }
+.container.main .sideBoxR .roomItem{ background-color: #666;
+     margin-bottom: 8px; border-radius: 20px; padding: 20px;}
+
+
+
