@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+/* gahee */
+
 @font-face {
     font-family: 'yg-jalnan';
     src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
@@ -43,11 +45,34 @@ border: 2px solid #777; border-radius: 50%; }
 .container.main .profileBox .createRommBtn{background-image: url("../img/Group 22.png"); cursor: pointer;
     background-position: center; background-repeat: no-repeat; background-size: contain; width: 200px; height: 80px; margin: auto;}
 .container.main .profileBox .createRommBtn:hover{background-image: url("../img/Group 23.png");}
-    .container.main .RankBox{background-color: #555; margin: 20px; min-height: 226px;}
+    .container.main .RankBox{background-color: #555; margin: 20px; min-height: 226px; border-radius: 15px;}
 .container.main .sideBoxR{width: 65%; background-color: #333; height: 100%;}
 .container.main .sideBoxR .roomList{height: 660px; overflow: hidden; padding: 20px; }
 .container.main .sideBoxR .roomItem{ background-color: #666;
      margin-bottom: 8px; border-radius: 20px; padding: 20px;}
 
 
+
+/* jiwon */
+
+/* rank */
+.container.main .rankTitle { background-image: url("../img/RankTitle.svg"); width: 150px; height: 150px;
+    background-position: center; background-repeat: no-repeat; width: 200px; height: 80px; margin: auto;}
+.container.main .sideBoxL .rankList { overflow-y: auto; padding: 0 20px 20px 20px; max-height: 120px; }
+
+.container.main .sideBoxL .rankList li:nth-child(1) .rankProfileName { color: #BDBA01; }
+.container.main .sideBoxL .rankList li:nth-child(2) .rankProfileName { color: #B7B7B7; }
+.container.main .sideBoxL .rankList li:nth-child(3) .rankProfileName { color: #DF9100; }
+.container.main .sideBoxL .rankItem { background-color: #666; margin-bottom: 8px; border-radius: 15px; padding: 20px }
+.container.main .sideBoxL .rankProfile { width: 55px; height : 55px; vertical-align: middle; padding : 0 15px }
+.container.main .sideBoxL .rankProfileName { line-height: 55px;}
+
+/* scrollbar */
+.container.main .sideBoxL .rankList::-webkit-scrollbar { display: none; }
+
+/* 스크롤 바 스타일 연습 */
+/* .container.main .sideBoxL .rankList::-webkit-scrollbar-thumb { background-color: #666; border-radius: 10px;}
+.container.main .sideBoxL .rankList::-webkit-scrollbar-track { background-color: #333; border-radius: 10px; }
+.container.main .sideBoxL .rankList::-webkit-scrollbar { width: 10px;}
+.container.main .sideBoxL .rankList::-webkit-scrollbar { width: 10px;} */
 
