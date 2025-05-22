@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>오목의 숲 🍀</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="icon" href="../img/sec05_chara02.png" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body id="game">
+    <!-- 브금 제어 버튼 -->
+    <div id="playico"></div>
+    <div onclick="window.playBGM()" id="play"></div>
+    <div onclick="window.stopBGM()" id="stop"></div>
+    <div class="container game">
+      <header></header>
+      <div class="content"></div>
+      <footer></footer>
+    </div>
+    <!-- 모달창 -->
+    <div id="modalComponent" style="opacity: 0"></div>
+    <script>
+      $(function () {
+        // modal.html 불러오기
+        $("#modalComponent").load("modal.html");
+      });
+    </script>
+  </body>
+</html>
