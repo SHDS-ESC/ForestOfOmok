@@ -3,14 +3,120 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>오목의 숲</title>
+    <title>오목의 숲 🍀</title>
     <link rel="stylesheet" href="../css/reset.css" />
     <link rel="stylesheet" href="../css/style.css" />
+    <link rel="icon" href="../img/sec05_chara02.png" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+      .loginBox {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 400px;
+        padding: 40px;
+        transform: translate(-50%, -50%);
+        background: #fff4f4e6;
+        box-sizing: border-box;
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+        border-radius: 10px;
+        border: 2px solid #2ba7ff;
+      }
+
+      .loginBox h2 {
+        margin: 0 0 30px;
+        padding: 0;
+        color: #0095ff;
+        text-align: center;
+        font-size: 24px;
+      }
+
+      .loginBox .userBox {
+        position: relative;
+      }
+
+      .loginBox .userBox input {
+        width: 100%;
+        padding: 10px 0;
+        font-size: 16px;
+        color: #0095ff;
+        margin-bottom: 30px;
+        border: none;
+        border-bottom: 2px solid #a1a1a1;
+        outline: none;
+        background: transparent;
+      }
+      .loginBox .userBox label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 10px 0;
+        font-size: 16px;
+        color: #0095ff;
+        pointer-events: none;
+        transition: 0.5s;
+      }
+
+      .loginBox .userBox input:focus ~ label,
+      .loginBox .userBox input:valid ~ label {
+        top: -20px;
+        left: 0;
+        color: #0095ff;
+        font-size: 12px;
+      }
+
+      .loginBox form a {
+        position: relative;
+        display: inline-block;
+        padding: 10px 20px;
+        color: #0095ff;
+        font-size: 16px;
+        text-decoration: none;
+        text-transform: uppercase;
+        overflow: hidden;
+        transition: 0.5s;
+        margin-top: 40px;
+        letter-spacing: 4px;
+      }
+
+      .loginBtn {
+        width: 180px;
+        background-image: url("../img/Group 25.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: 80px;
+        margin: auto;
+        cursor: pointer;
+      }
+
+      .loginBtn:hover {
+        background-image: url("../img/Group 24.png");
+      }
+    </style>
   </head>
-  <body>
+  <body id="login">
     <div class="container login">
       <header></header>
-      <div class="content"></div>
+      <div class="content">
+        <div class="loginBox">
+          <h2>로그인</h2>
+          <form>
+            <div class="userBox">
+              <input type="text" name="" required="" />
+              <label>아이디</label>
+            </div>
+            <div class="userBox">
+              <input type="password" name="" required="" />
+              <label>비밀번호</label>
+            </div>
+            <div
+              class="loginBtn"
+              onclick="alert('로그인'); location.href='main.html'"
+            ></div>
+          </form>
+        </div>
+      </div>
       <footer></footer>
     </div>
   </body>
