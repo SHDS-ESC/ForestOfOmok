@@ -68,7 +68,12 @@ background: #0095ff;color: white;border: none;padding: 10px 25px;border-radius: 
 }
 
 
-/* login */
+/*start*/
+.start header span{background-image: url('../img/로고최종.png'); width: 340px; height: 190px; 
+    background-position: center; background-repeat: no-repeat;
+    background-size: contain; margin: auto; display: block;
+position: relative; top: -75px;}
+    /* login */
 .container.login{ background-color: #ffffff9e; }
 
 
@@ -76,7 +81,7 @@ background: #0095ff;color: white;border: none;padding: 10px 25px;border-radius: 
 /* main */
 .container.main{}
 .main header{height: 80px; background-color: #ffffff9e; }
-.main header span{background-image: url('../img/Group_1-removebg-preview.png'); width: 340px; height: 190px; 
+.main header span{background-image: url('../img/로고최종.png'); width: 340px; height: 190px; 
     background-position: center; background-repeat: no-repeat;
     background-size: contain; margin: auto; display: block;
 position: relative; top: -75px;}
