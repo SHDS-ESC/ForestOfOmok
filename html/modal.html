@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>bgm 모달</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="modalWrap">
+      <div class="modal" id="cuteModal">
+        <h2>안녕하세요!</h2>
+        <p>
+          <span class="pink">오</span><span class="blue">목</span
+          ><span class="yellow">의</span> <span class="green">숲</span>에 오신걸
+          환영합니다 😊
+        </p>
+        <p>버튼을 눌러 음악을 켜거나 끌 수 있어요!</p>
+        <button class="on-btn">ON</button>
+        <button class="off-btn">OFF</button>
+        <div id="player-area"></div>
+      </div>
+    </div>
+    <script>
+      let player;
+      const videoId = "GfJXzRALUEE"; // 유튜브 영상 ID
+
+      function createPlayer() {
+        player = new YT.Player("player-area", {
+          height: "0",
+          width: "0",
+          videoId: videoId,
+          playerVars: {
+            autoplay: 1,
+            loop: 1,
+            playlist: videoId,
+          },
+          events: {
+            onReady: () => player.pauseVideo(), // 처음에는 멈춰 있음
+          },
+        });
+      }
+
+      // 외부에서도 제어 가능하게
+      window.playBGM = function () {
+        if (!player) {
+          createPlayer();
+          setTimeout(() => player.playVideo(), 1000); // 로드 후 재생
+        } else {
+          player.playVideo();
+        }
+      };
+
+      window.stopBGM = function () {
+        if (player) player.pauseVideo();
+      };
+
+      $(".on-btn").on("click", function () {
+        $("#cuteModal").fadeOut(900);
+        window.playBGM();
+      });
+
+      $(".off-btn").on("click", function () {
+        $("#cuteModal").fadeOut(900);
+        window.stopBGM();
+      });
+    </script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+  </body>
+</html>
