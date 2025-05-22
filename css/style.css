@@ -56,23 +56,21 @@ border: 2px solid #777; border-radius: 50%; }
 /* jiwon */
 
 /* rank */
-.container.main .rankTitle { background-image: url("../img/RankTitle.svg"); width: 150px; height: 150px;
+.container.main .rankTitle { background-image: url("../img/RankTitle.svg");
     background-position: center; background-repeat: no-repeat; width: 200px; height: 80px; margin: auto;}
-.container.main .sideBoxL .rankList { overflow-y: auto; padding: 0 20px 20px 20px; max-height: 120px; }
-
+.container.main .sideBoxL .rankList { overflow-y: auto; padding: 0 10px; max-height: 150px; }
 .container.main .sideBoxL .rankList li:nth-child(1) .rankProfileName { color: #BDBA01; }
 .container.main .sideBoxL .rankList li:nth-child(2) .rankProfileName { color: #B7B7B7; }
 .container.main .sideBoxL .rankList li:nth-child(3) .rankProfileName { color: #DF9100; }
-.container.main .sideBoxL .rankItem { background-color: #666; margin-bottom: 8px; border-radius: 15px; padding: 20px }
-.container.main .sideBoxL .rankProfile { width: 55px; height : 55px; vertical-align: middle; padding : 0 15px }
+.container.main .sideBoxL .rankItem { background-color: #666; margin-bottom: 8px; border-radius: 15px; padding: 0 20px; }
+.container.main .sideBoxL .rankProfile { width: 30px; height : 30px; vertical-align: middle; padding : 0 20px 0 10px; }
 .container.main .sideBoxL .rankProfileName { line-height: 55px;}
 
 /* scrollbar */
-.container.main .sideBoxL .rankList::-webkit-scrollbar { display: none; }
+/* .container.main .sideBoxL .rankList::-webkit-scrollbar { display: none; } */
 
 /* 스크롤 바 스타일 연습 */
-/* .container.main .sideBoxL .rankList::-webkit-scrollbar-thumb { background-color: #666; border-radius: 10px;}
+.container.main .sideBoxL .rankList::-webkit-scrollbar-thumb { background-color: #666; border-radius: 10px;}
 .container.main .sideBoxL .rankList::-webkit-scrollbar-track { background-color: #333; border-radius: 10px; }
 .container.main .sideBoxL .rankList::-webkit-scrollbar { width: 10px;}
-.container.main .sideBoxL .rankList::-webkit-scrollbar { width: 10px;} */
 
