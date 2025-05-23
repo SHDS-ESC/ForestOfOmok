@@ -11,9 +11,10 @@
 }
 
 body {
-  font-family: "Roboto", sans-serif;
-  padding: 0;
   margin: 0;
+  padding: 0;
+  overflow: hidden; /* 스크롤 방지 */
+  font-family: "Roboto", sans-serif;
   height: 100vh;
 }
 
@@ -22,37 +23,63 @@ body {
 *************/
 
 #background {
-  z-index: 1;
-  text-align: center;
-  position: absolute;
+  position: fixed;
   top: 0;
-  bottom: 0;
   left: 0;
-  right: 0;
-  background-image: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%);
+  width: 100vw;
   height: 100vh;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-image: url('background.jpg'); /* 배경 이미지 경로 */
+  background-size: cover; /* 화면에 맞게 이미지 크기 조정 */
+  background-position: center; /* 이미지 중앙 정렬 */
+  z-index: -1; /* 배경을 맨 뒤로 */
 }
 
 /********
 * timer *
 ********/
 
-#info,
-#timer {
-  font-size: 20px;
-  padding-top: 81px;
-  background-color: #333;
-  color: transparent;
-  text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.5);
-  background-clip: text;
-  font-weight: 500;
+.timer-wrap {
+  position: absolute;
+  top: 80px;
+  right: 200px;
+  width: 120px;
+  height: 120px;
+  z-index: 10; /* 배경 위에 표시 */
+}
+
+.timer-profile {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  position: relative;
+  z-index: 2;
+}
+
+.timer-box {
+  position: absolute;
+  left: 10px;
+  top: 95px;
+  width: 100px;
+  height: 40px;
+  border: 2px solid #222;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 1.6em;
+  font-weight: bold;
+  letter-spacing: 2px;
+  z-index: 1;
 }
 
 #timer {
-  padding-top: 4px;
+  color: #222;
 }
 
 /********
@@ -126,27 +153,32 @@ canvas {
 * messages *
 ***********/
 
-#msg {
-  z-index: 4;
+#info {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.67);
-  color: rgba(255, 255, 255, 0.87);
-  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.94);
-  font-size: 32px;
-  font-weight: 500;
-  display: none;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5em;
+  font-weight: bold;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  border-radius: 10px;
+  z-index: 10; /* 배경 위에 표시 */
 }
 
-#msg > div {
+#msg {
   position: absolute;
-  top: 50%;
+  top: 60px;
   left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
+  font-size: 1.2em;
+  font-weight: bold;
+  color: yellow;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  border-radius: 10px;
+  z-index: 10; /* 배경 위에 표시 */
 }
 
 .show {
