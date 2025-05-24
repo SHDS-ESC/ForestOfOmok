@@ -14,6 +14,9 @@ local.properties
 .loadpath
 .recommenders
 
+# Tomcat Servers setting files // added by sangyoon
+Servers/
+
 # External tool builders
 .externalToolBuilders/
 
