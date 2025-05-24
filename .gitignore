@@ -13,6 +13,7 @@ local.properties
 .settings/
 .loadpath
 .recommenders
+.classpath
 
 # Tomcat Servers setting files // added by sangyoon
 Servers/
