@@ -4,57 +4,12 @@
   <meta charset="UTF-8">
   <title>오목 게임</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    .timer-wrap {
-      position: absolute;
-      top: 80px;
-      right: 200px;
-      width: 120px;
-      height: 120px;
-      z-index: 10;
-    }
-
-    .timer-profile {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      display: block;
-      margin: 0 auto;
-      object-fit: cover;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-      position: relative;
-      z-index: 2; /* 이미지를 앞으로 */
-    }
-
-    .timer-box {
-      position: absolute;
-      left: 10px;
-      top: 95px; /* 더 아래로 내림 */
-      width: 100px;
-      height: 40px;
-      border: 2px solid #222;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Consolas', 'Courier New', monospace;
-      font-size: 1.6em;
-      font-weight: bold;
-      letter-spacing: 2px;
-      z-index: 1; /* 타이머 박스는 뒤로 */
-    }
-
-    #timer {
-      color: #222;
-    }
-  </style>
 </head>
 <body>  
   <div id="background"></div> 
   
   <button id="resignBtn" style="position:absolute; top:10px; left:10px; z-index:10; background:transparent; border:none; padding:0;">
-    <img src="flag.png" alt="항복" style="width:32px; height:32px;">
+    <img src="img/flag.png" alt="항복" style="width:32px; height:32px;">
   </button> 
 
   <!-- 누구 차례인지 표시 -->
@@ -64,13 +19,13 @@
   <div id="msg"></div>
 
   <div class="timer-wrap">
-    <img src="bomb.png" class="timer-profile" alt="타이머 프로필">
+    <img src="img/bomb.png" class="timer-profile" alt="타이머 프로필">
     <div class="timer-box">
       <span id="timer">0:30</span>
     </div>
   </div>
   
-  <div id="resignModal" style="display:none; position:fixed; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.3); z-index:1000;">
+  <div id="resignQuestion" style="display:none; position:fixed; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.3); z-index:1000;">
     <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:#fff; padding:30px 40px; border-radius:10px; text-align:center; box-shadow:0 2px 16px rgba(0,0,0,0.2);">
       <div style="margin-bottom:20px; font-size:1.2em;">정말 항복하시겠습니까?</div>
       <button id="resignYes" style="margin-right:20px;">예</button>
