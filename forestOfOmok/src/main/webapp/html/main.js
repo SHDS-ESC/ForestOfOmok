@@ -216,10 +216,25 @@ function countOpenN(row, column, player, n) {
         elementItem.addEventListener("click", isItemClicked);
         }
     }
-    };
+};
 
  isItemClicked = (event) => {
     cell = event.target.cellProperties;
+    
+	$.ajax({
+	  url: '/forestOfOmok/omokTurn',
+	  type: 'POST',
+	  contentType: 'application/json; charset=UTF-8',
+	  data: JSON.stringify({ row: cell.row, col: cell.column}),
+	  success: function(response) {
+		console.log("서버 응답 : ", response);
+		alert("서버 메세지 : " + response.msg);
+	  },
+      error: function(xhr, status, error) {
+	    console.log(xhr, status, error);
+  	  }
+	});
+    
     // 현재 플레이어 객체를 가져옴
     const currentPlayer = getCurrentPlayer(turn);
     // 금수 체크
