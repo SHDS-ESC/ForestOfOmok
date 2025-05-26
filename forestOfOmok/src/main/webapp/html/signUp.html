@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>회원가입</title>
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/signUp.css" />
+  <link rel="icon" href="../img/sec05_chara02.png" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body id = "signUp">
+  <div class="signUp container">
+    <div class = "signUpBox">
+    <h1>회원가입</h1>
+    
+    <div class="profileImg">
+      <div class="circle" id="profileCircle"></div>
+      <button type="button" onclick = "openModal()">이미지변경</button>
+    </div>
+
+    <div class="formBox">
+      <label for="username">아이디 (닉네임)</label>
+      <input type="text" id="username" name="username">
+      <span class="checkMsg" id="usernameMsg"></span>
+      <button type="button" class="checkBtn" onclick="checkUsername()">중복확인</button>
+    </div>
+
+    <div class="formBox">
+      <label for="name">이름</label>
+      <input type="text" id="name" name="name">
+    </div>
+
+    <div class="formBox">
+      <label for="password">비밀번호</label>
+      <input type="password" id="password" name="password">
+    </div>
+
+    <div class="formBox">
+      <label for="confirm-password">비밀번호 확인</label>
+      <input type="password" id="confirm-password" name="confirm-password">
+      <span class="check-msg" id="passwordMsg"></span>
+    </div>
+
+    <div class="formBox gender">
+      <label>성별</label>
+      <div class="genderOptions">
+        <label><input type="radio" name="gender" value="남"> 남</label>
+        <label><input type="radio" name="gender" value="여"> 여</label>
+      </div>
+    </div>
+
+    <button class="submitBtn" onclick="submitForm();">회원가입</button>
+  </div>
+  </div> 
+
+  <!--이미지 선택 모달-->
+  <div id = "imgSelectModal" class = "modal hidden">
+    <div class="modalContent">
+      <button class = "closeBtn" onclick="closeModal()">❌</button>
+      <h2>프로필 이미지 선택</h2>
+      <div class="imgOptions">
+        <img src="../img/profileImg1.jpg" onclick="selectImage(this)" class="profileOption" />
+        <img src="../img/profileImg2.png" onclick="selectImage(this)" class="profileOption" />
+        <img src="../img/profileImg3.png" onclick="selectImage(this)" class="profileOption" />
+        <img src="../img/profileImg4.png" onclick="selectImage(this)" class="profileOption" />
+        <img src="../img/profileImg5.png" onclick="selectImage(this)" class="profileOption" />
+        <img src="../img/profileImg6.png" onclick="selectImage(this)" class="profileOption" />
+      </div>
+      <button onclick="applySelectedImage()" class="applyBtn">선택</button>
+    </div>
+  <script src="/ForestOfOmok/js/signUp.js"></script>
+</body>
+</html>

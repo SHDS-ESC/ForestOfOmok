@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>오목의 숲 🍀</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="icon" href="../img/sec05_chara02.png" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+
+  .startBox {
+    position: fixed;
+    z-index: 100;
+    background-image: url("../img/gamestartbtn.png");
+    width: 500px; /* 버튼 크기 지정 */
+    height: 200px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    top: 80%; left: 50%;     transform: translate(-43%, -50%);
+}
+.centerLogo {
+  width: 800px; /* 로고 크기 조정 */
+  height: 300px;
+  background-image: url('../img/logo.png'); /* 실제 로고 경로로 수정 */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -138%); /* 살짝 위쪽으로 보정 */
+  z-index: 10;
+}
+
+    </style>
+  </head>
+  <body id="start">
+      <div class = "start container">
+        <header></header>
+      <div class="content">
+        <div class="centerLogo"></div>
+        <div class = "logo"></div>
+        <div class = "startBox" onclick = "location.href = 'enter.html'"></div>
+            <div class = "startbtn" onclick = location.href = "login.html">
+            </div>
+        </div>
+     
+    </div>
+      <footer></footer>
+     </div>
+  </body>
+</html>
