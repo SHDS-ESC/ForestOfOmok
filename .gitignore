@@ -1,6 +1,8 @@
 # Created by https://www.toptal.com/developers/gitignore/api/eclipse,java
 # Edit at https://www.toptal.com/developers/gitignore?templates=eclipse,java
 
+Servers/
+
 ### Eclipse ###
 .metadata
 bin/
@@ -81,7 +83,7 @@ local.properties
 .mtj.tmp/
 
 # Package Files #
-*.jar
+# *.jar
 *.war
 *.nar
 *.ear
