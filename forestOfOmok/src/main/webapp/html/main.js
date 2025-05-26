@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         map,
         cell,
         turn
-    };
+        };
     };
 
     var {
@@ -288,11 +288,11 @@ function countOpenN(row, column, player, n) {
     }
 
     document.getElementById("resignBtn").onclick = function() {
-    document.getElementById("resignModal").style.display = "block";
+    document.getElementById("resignQuestion").style.display = "block";
     };
 
 document.getElementById("resignYes").onclick = function() {
-    document.getElementById("resignModal").style.display = "none";
+    document.getElementById("resignQuestion").style.display = "none";
     // 현재 턴의 플레이어가 항복
     const currentPlayer = getCurrentPlayer(turn);
     const winner = currentPlayer.id === PLAYERS.BLACK.id ? PLAYERS.WHITE : PLAYERS.BLACK;
@@ -301,7 +301,7 @@ document.getElementById("resignYes").onclick = function() {
 
 
     document.getElementById("resignNo").onclick = function() {
-    document.getElementById("resignModal").style.display = "none";
+    document.getElementById("resignQuestion").style.display = "none";
     };
 
     ticksToTime = (ticks) => {
