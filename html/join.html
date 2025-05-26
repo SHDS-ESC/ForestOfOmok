@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>오목의 숲 🍀</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="icon" href="../img/sec05_chara02.png" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+      .loginBox {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 400px;
+        padding: 40px;
+        transform: translate(-50%, -50%);
+        background: #fff4f4e6;
+        box-sizing: border-box;
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+        border-radius: 10px;
+        border: 2px solid #2ba7ff;
+      }
+
+      .loginBox h2 {
+        margin: 0 0 30px;
+        padding: 0;
+        color: #0095ff;
+        text-align: center;
+        font-size: 24px;
+      }
+
+      .loginBox .userBox {
+        position: relative;
+      }
+
+      .loginBox .userBox input {
+        width: 100%;
+        padding: 10px 0;
+        font-size: 16px;
+        color: #0095ff;
+        margin-bottom: 30px;
+        border: none;
+        border-bottom: 2px solid #a1a1a1;
+        outline: none;
+        background: transparent;
+      }
+      .loginBox .userBox label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 10px 0;
+        font-size: 16px;
+        color: #0095ff;
+        pointer-events: none;
+        transition: 0.5s;
+      }
+
+      .loginBox .userBox input:focus ~ label,
+      .loginBox .userBox input:valid ~ label {
+        top: -20px;
+        left: 0;
+        color: #0095ff;
+        font-size: 12px;
+      }
+
+      .loginBox form a {
+        position: relative;
+        display: inline-block;
+        padding: 10px 20px;
+        color: #0095ff;
+        font-size: 16px;
+        text-decoration: none;
+        text-transform: uppercase;
+        overflow: hidden;
+        transition: 0.5s;
+        margin-top: 40px;
+        letter-spacing: 4px;
+      }
+
+      .joinBtn {
+        width: 180px;
+        background-image: url("../img/Group 37.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: 80px;
+        margin: auto;
+        cursor: pointer;
+      }
+
+      .joinBtn:hover {
+        background-image: url("../img/Group 36.png");
+      }
+
+      .btn {
+        background: #fff4f4e6;
+        box-sizing: border-box;
+        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.358);
+        border-radius: 10px;
+        border: 2px solid #2ba7ff;
+        cursor: pointer;
+        padding: 2px 8px;
+      }
+
+      .btn:hover {
+        background: #2ba7ff;
+        transition: 0.2s;
+        color: #fff;
+      }
+
+      .idCheckBtn {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+
+      #toast {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%) translateY(-100px);
+        background: linear-gradient(135deg, #5a5a5a, #5a5a5a);
+        color: white;
+        padding: 12px 24px;
+        font-size: 16px;
+        border-radius: 30px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        transition: all 0.5s ease;
+        z-index: 9999;
+        pointer-events: none;
+      }
+
+      #toast.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(-120px);
+      }
+
+      .userBox .red {
+        color: rgb(255, 64, 64);
+        display: block;
+        position: absolute;
+        font-size: 11px;
+        bottom: 15px;
+        opacity: 0;
+        transition: 0.2s;
+      }
+    </style>
+  </head>
+  <body id="login">
+    <div class="container login">
+      <header></header>
+      <div class="content">
+        <div class="loginBox">
+          <h2>회원가입</h2>
+          <form>
+            <div class="userBox">
+              <input type="text" name="" required="" />
+              <label>아이디</label>
+              <button class="btn idCheckBtn" type="button">중복확인</button>
+            </div>
+            <div class="userBox">
+              <input type="text" name="" required="" />
+              <label>이름</label>
+            </div>
+            <div class="userBox">
+              <input class="password" type="password" name="" required="" />
+              <label>비밀번호</label>
+            </div>
+            <div class="userBox">
+              <input
+                class="password check"
+                type="password"
+                name=""
+                required=""
+              />
+              <label>비밀번호 확인</label>
+              <span class="red">두 비밀번호가 달라요! 확인해 보시겠어요?</span>
+            </div>
+
+            <div
+              class="joinBtn"
+              onclick="alert('회원가입 완료'); location.href='login.html'"
+            ></div>
+          </form>
+        </div>
+      </div>
+      <footer></footer>
+    </div>
+    <!-- 토스트 -->
+    <div id="toast"></div>
+    <!-- 토스트 -->
+    <script>
+      // 아이디 중복 체크 버튼 클릭
+      $(".idCheckBtn").click(function () {
+        const $toast = $("#toast");
+        $toast.text("🌸 사용가능한 아이디입니다");
+        $toast.removeClass("show"); // 다시 누를 때 초기화
+
+        setTimeout(function () {
+          $toast.addClass("show");
+          setTimeout(function () {
+            $toast.removeClass("show");
+          }, 2000);
+        }, 10);
+      });
+
+      // 비밀번호 확인 문구
+      $(".userBox .password").on("keyup", function () {
+        const pw = $(".userBox .password").val(); // 비밀번호
+        const pwCheck = $(".userBox .check").val(); // 비밀번호 확인
+        const warning = $(".userBox .red"); // 경고 메시지 span
+
+        if (pwCheck.length > 0) {
+          if (pwCheck !== pw) {
+            warning.css("opacity", 1);
+          } else warning.css("opacity", 0);
+        } else warning.css("opacity", 0);
+      });
+    </script>
+  </body>
+</html>
