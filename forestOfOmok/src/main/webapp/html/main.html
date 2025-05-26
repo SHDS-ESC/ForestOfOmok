@@ -1,129 +1,139 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>오목의 숲 🍀</title>
 
-    <link rel="stylesheet" href="../css/reset.css" />
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="icon" href="../img/sec05_chara02.png" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  </head>
-  <body>
-    <!-- 브금 제어 버튼 -->
-    <div id="playico"></div>
-    <div onclick="window.playBGM()" id="play"></div>
-    <div onclick="window.stopBGM()" id="stop"></div>
-    <!-- 브금 제어 버튼 -->
-    <!-- 임시 버튼 -->
-    <img src="/forestOfOmok/img/sec09_chara03.png" alt="" id="moveLoginBtn" />
-    <img
-      src="/forestOfOmok/img/slowlife_chara01__pc.png"
-      alt=""
-      id="moveGameBtn"
-    />
-    <!-- 임시 버튼 -->
-    <div class="container main">
-      <header><span></span></header>
-      <div class="content">
-        <div class="sideBoxL">
-          <div class="profileBox">
-            <div class="img"></div>
-            <div class="textBox">
-              <p>닉네임 : 테스트</p>
-              <p>
-                <span class="blue">100</span> 승 <span class="red">1</span> 패
-              </p>
-              <p>현재 순위 : <span class="yellow">1</span> 등</p>
-            </div>
-            <div class="createRommBtn"></div>
-          </div>
-          <div class="RankBox">
-            <!-- 여기부터 지원 작성 -->
-            <div class="rankTitle"></div>
-            <ul class="rankList">
-              <li class="rankItem">
-                <span class="rankProfileName"> 1등 </span>
-                <span>
-                  <img class="rankProfile" src="../img/img-rank1.png" />
-                </span>
-                <span class="rankProfileName"> 닉네임 </span>
-              </li>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>오목의 숲 🍀</title>
 
-              <li class="rankItem">
-                <span class="rankProfileName"> 2등 </span>
-                <span>
-                  <img class="rankProfile" src="../img/img-rank1.png" />
-                </span>
-                <span class="rankProfileName"> 닉네임 </span>
-              </li>
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" href="../img/sec05_chara02.png" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
 
-              <li class="rankItem">
-                <span class="rankProfileName"> 3등 </span>
-                <span>
-                  <img class="rankProfile" src="../img/img-rank1.png" />
-                </span>
-                <span class="rankProfileName"> 닉네임 </span>
-              </li>
-            </ul>
+<body>
+  <!-- 브금 제어 버튼 -->
+  <div id="playico"></div>
+  <div onclick="window.playBGM()" id="play"></div>
+  <div onclick="window.stopBGM()" id="stop"></div>
+  <!-- 브금 제어 버튼 -->
+  <!-- 임시 버튼 -->
+  <img src="/forestOfOmok/img/sec09_chara03.png" alt="" id="moveLoginBtn" />
+  <img src="/forestOfOmok/img/slowlife_chara01__pc.png" alt="" id="moveGameBtn" />
+  <!-- 임시 버튼 -->
+  <div class="container main">
+    <header><span></span></header>
+    <div class="content">
+      <div class="sideBoxL">
+        <div class="profileBox">
+          <div class="img"></div>
+          <div class="textBox">
+            <p>닉네임 : 테스트</p>
+            <p>
+              <span class="blue">100</span> 승 <span class="red">1</span> 패
+            </p>
+            <p>현재 순위 : <span class="yellow">1</span> 등</p>
           </div>
           <div class="createRommBtn"></div>
         </div>
-        <div class="sideBoxR">
-          <ul class="tabs">
-            <li class="active">게임하기 🎮</li>
-            <li>전적보기 🏆</li>
-          </ul>
-          <div class="tabContainer">
-            <div>
-              <!-- 방 없을 때  -->
-              <div class="emptyRoom">
-                <span></span>
-                <p>아직 방이 없어요</p>
-                <p>방을 만들어서 시작해주세요!</p>
-              </div>
+        <div class="RankBox">
+          <!-- 여기부터 지원 작성 -->
+          <div class="rankTitle"></div>
+          <ul class="rankList">
+            <li class="rankItem">
+              <span class="rankProfileName"> 1등 </span>
+              <span>
+                <img class="rankProfile" src="../img/img-rank1.png" />
+              </span>
+              <span class="rankProfileName"> 닉네임 </span>
+            </li>
 
-              <!-- 방 있을 때 -->
-              <ul class="roomList" style="display: none">
-                <!-- <li class="roomItem">방 아이템</li> -->
-              </ul>
-            </div>
-            <div>전적컨텐츠</div>
-          </div>
+            <li class="rankItem">
+              <span class="rankProfileName"> 2등 </span>
+              <span>
+                <img class="rankProfile" src="../img/img-rank1.png" />
+              </span>
+              <span class="rankProfileName"> 닉네임 </span>
+            </li>
+
+            <li class="rankItem">
+              <span class="rankProfileName"> 3등 </span>
+              <span>
+                <img class="rankProfile" src="../img/img-rank1.png" />
+              </span>
+              <span class="rankProfileName"> 닉네임 </span>
+            </li>
+          </ul>
         </div>
-        <!-- 여기까지 지원 작성 -->
+        <div class="createRommBtn"></div>
       </div>
       <div class="sideBoxR">
-        <!-- 방 없을 때  -->
-        <div class="emptyRoom">
-          <span></span>
-          <p>아직 방이 없어요</p>
-          <p>방을 만들어서 시작해주세요!</p>
-        </div>
-
-        <!-- 방 있을 때 -->
-        <ul class="roomList" style="display: none">
-          <li class="roomItem">
-            <!-- 히스 토리 아이템 -->
-            <div class="historyItem">
-              <div class="historyItemL">
-                <span class="historyStoneInfoMe">흑</span>
-                <span><img class="historyProfileMe" src="../img/img-rank1.png" /></span>
-                <span class="historyNickNameMe">곰돌이</span>
-              </div>
-
-              <div class="historyItemR">
-                <span class="historyNickNameYou">곰돌이</span>
-                <span><img class="historyProfileYou" src="../img/img-rank1.png" /></span>
-                <span class="historyStoneInfoYou">백</span>
-              </div>
-            </div>
-          </li>
+        <ul class="tabs">
+          <li class="active">게임하기 🎮</li>
+          <li>전적보기 🏆</li>
         </ul>
+        <div class="tabContainer">
+          <div>
+            <!-- 방 없을 때  -->
+            <div class="emptyRoom">
+              <span></span>
+              <p>아직 방이 없어요</p>
+              <p>방을 만들어서 시작해주세요!</p>
+            </div>
+            <!-- 방 있을 때 -->
+            <ul class="roomList" style="display: none">
+            </ul>
+          </div>
+          <div>
+            <!-- 전적 아이템 -->
+            <ul class="historyList">
+              <li>
+                <div class="historyItem">
+                  <div class="historyItemL">
+                    <span class="historyStoneInfoMe">승</span>
+                    <img class="historyProfileMe" src="../img/img-rank1.png"></img>
+                    <span class="historyNickNameMe">곰돌이</span>
+                  </div>
+                  <div class="historyItemR">
+                    <span class="historyNickNameYou">앉아있는 고양이</span>
+                    <img class="historyProfileYou" src="../img/img-rank1.png"></img>
+                    <span class="historyStoneInfoYou">패</span>
+                  </div>
+                </div>
+                <div class="historyPannel">
+                  <div class="historyTime"> 시간 : </div>
+                  <div class="historyTurn"> 턴수 : </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="historyItem">
+                  <div class="historyItemL">
+                    <span class="historyStoneInfoMe">패</span>
+                    <img class="historyProfileMe" src="../img/img-rank1.png"></img>
+                    <span class="historyNickNameMe">앉아있는 고양이</span>
+                  </div>
+                  <div class="historyItemR">
+                    <span class="historyNickNameYou">곰돌이</span>
+                    <img class="historyProfileYou" src="../img/img-rank1.png"></img>
+                    <span class="historyStoneInfoYou">승</span>
+                  </div>
+                </div>
+                <div class="historyPannel">
+                  <div class="historyTime"> 시간 : </div>
+                  <div class="historyTurn"> 턴수 : </div>
+                </div>
+              </li>
+          </div>
+          <!-- style="display:none" -->
+
+          </ul>
+        </div>
       </div>
     </div>
-    <footer></footer>
+  </div>
+  <footer></footer>
   </div>
   <!-- 모달창 -->
   <div id="modalComponent"></div>
@@ -131,8 +141,9 @@
     $(function () {
       let test = false; // 임시
 
-        // modal.html 불러오기
-        $("#modalComponent").load("/forestOfOmok/html/modal.html");
+      // modal.html 불러오기
+      $("#modalComponent").load("../html/modal.html");
+
 
       // 방 만들기
       $(".createRommBtn").click(function () {
@@ -141,63 +152,77 @@
         $(".emptyRoom").hide(); // 방 없을때 메시지 숨김
         $(".roomList").show(); // 방 있을때 컴포넌트 display: none -> show 노출
 
-          // ul > li 태그 append로 붙이기
-          $(".roomList").append(`<li class="roomItem">${"✨ 새 방 생성"}</li>`);
-        });
-
-        // 방 들어가기
-        // 동적으로 추가된 방
-        // .click() 바인딩은 나중에 추가된 요소는 반응하지 않는다고함
-        // -> 이벤트 위임 방식 이용
-        $(".roomList").on("click", ".roomItem", function () {
-          const index = $(".roomList .roomItem").index(this);
-          console.log(index);
-          alert(`방 ${index + 1}번`);
-        });
-
-        // 로그인 페이지로 이동 (임시)
-        $("#moveLoginBtn").click(function () {
-          location.href = "/forestOfOmok/html/login.html"; // 같은 폴더라면 슬래시 (/) 없이
-        });
-
-        // 게임 페이지로 이동 (임시)
-        $("#moveGameBtn").click(function () {
-          location.href = "/forestOfOmok/html/game.html"; // 같은 폴더라면 슬래시 (/) 없이
-        });
-
-        // 탭
-        $(".tabs li").click(function () {
-          const index = $(this).index(); // 클릭한 li 인덱스
-
-          $(".tabs li").removeClass("active");
-          $(this).addClass("active");
-
-          $(".tabContainer > div").hide();
-          $(".tabContainer > div").eq(index).show();
-        });
+        // ul > li 태그 append로 붙이기
+        $(".roomList").append(`<li class="roomItem">${"✨ 새 방 생성"}</li>`);
       });
+
+      // 방 들어가기
+      // 동적으로 추가된 방
+      // .click() 바인딩은 나중에 추가된 요소는 반응하지 않는다고함
+      // -> 이벤트 위임 방식 이용
+      $(".roomList").on("click", ".roomItem", function () {
+        const index = $(".roomList .roomItem").index(this);
+        console.log(index);
+        alert(`방 ${index + 1}번`);
+      });
+
+      // 로그인 페이지로 이동 (임시)
+      $("#moveLoginBtn").click(function () {
+        location.href = "../html/login.html"; // 같은 폴더라면 슬래시 (/) 없이
+      });
+
+      // 게임 페이지로 이동 (임시)
+      $("#moveGameBtn").click(function () {
+        location.href = "../html/game.html"; // 같은 폴더라면 슬래시 (/) 없이
+      });
+
+      // 탭
+      $(".tabs li").click(function () {
+        const index = $(this).index(); // 클릭한 li 인덱스
+
+        $(".tabs li").removeClass("active");
+        $(this).addClass("active");
+
+        $(".tabContainer > div").hide();
+        $(".tabContainer > div").eq(index).show();
+      });
+    });
 
 
     // 버튼 클릭 시 열리고, 닫힘 토글
     let isOpen = false;
     $(".historyItemL").click(function () {
-      const selectRroom = $(this).closest(".roomItem");
+      const historyItem = $(this).closest(".historyItem");
+      const historyPannel = historyItem.next(".historyPannel"); // 바로 뒤에 있는 패널
+      const selectLroom = historyItem.find(".historyItemL");
       if (isOpen) {
-        selectRroom.css("height", "");
+        historyItem.css("border-radius", "20px");
+        historyPannel.slideUp(300); // 열 때 패널 슬라이드 다운
+        historyPannel.css("color","white");
       } else {
-        selectRroom.css("height", "500px");
-        selectRroom.css("background-color", "black")
+        historyPannel.slideDown(300); // 열 때 패널 슬라이드 다운
+        historyItem.css("border-bottom-left-radius", "0");
+        historyItem.css("border-bottom-right-radius", "0");
+        selectLroom.css("background-color", "black");
+        historyPannel.css("background-color", "black");
       }
       isOpen = !isOpen;
     });
 
     $(".historyItemR").click(function () {
-      const selectRroom = $(this).closest(".roomItem");
+      const historyItem = $(this).closest(".historyItem");
+      const historyPannel = historyItem.next(".historyPannel"); // 바로 뒤에 있는 패널
+      const selectRroom = historyItem.find(".historyItemR");
       if (isOpen) {
-        selectRroom.css("height", "");
+        historyPannel.slideUp(300); // 열 때 패널 슬라이드 다운
+        historyItem.css("border-radius", "20px");
+        historyPannel.css("color","white");
       } else {
-        selectRroom.css("height", "500px");
-        selectRroom.css("background-color", "white")
+        historyPannel.slideDown(300); // 열 때 패널 슬라이드 다운
+        historyItem.css("border-bottom-left-radius", "0");
+        historyItem.css("border-bottom-right-radius", "0");
+        selectRroom.css("background-color", "white");
+        historyPannel.css("background-color", "white");
       }
       isOpen = !isOpen;
     });
