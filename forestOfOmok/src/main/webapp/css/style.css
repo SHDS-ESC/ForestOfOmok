@@ -87,7 +87,7 @@ footer {}
 }
 
 /* 브금 모달 */
-.main .modal {
+.modal .modal {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -103,26 +103,26 @@ footer {}
   animation: popIn 0.6s ease;
 }
 
-.main .modal h2 {
+.modal .modal h2 {
   margin: 0 0 20px;
   color: #0095ff;
   font-weight: bold;
   font-size: 20px;
 }
 
-.main .modal p {
+.modal .modal p {
   color: #333;
   margin-bottom: 20px;
 }
 
-.main .modal p span {
+.modal .modal p span {
   display: inline-block;
 }
 
-.main .modal p .pink { color: rgb(255, 107, 132); }
-.main .modal p .blue { color: rgb(67, 171, 211); }
-.main .modal p .yellow { color: rgb(244, 192, 36); }
-.main .modal p .green { color: rgb(1, 156, 47); }
+.modal .modal p .pink { color: rgb(255, 107, 132); }
+.modal .modal p .blue { color: rgb(67, 171, 211); }
+.modal .modal p .yellow { color: rgb(244, 192, 36); }
+.modal .modal p .green { color: rgb(1, 156, 47); }
 
 .close-btn {
   background: #0095ff;
