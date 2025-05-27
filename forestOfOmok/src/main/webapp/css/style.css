@@ -17,8 +17,8 @@ width: 100%; height: 100vh; background-size: cover;
 /* body#login, #signUp, #find{background-image: url('../img/bg_vis.jpg');} */
 body#game{background-image: url('../img/img1.jpg');}
 .container {
-  width: 1200px;
-  height: 800px;
+  width: 1000px;
+  height: 700px;
   margin: auto;
   position: fixed;
   transform: translate(-50%,-50%);
@@ -202,8 +202,7 @@ body {
 
 .timer-wrap {
   position: fixed;
-  /* container 왼쪽 바깥, 중간쯤에 오도록 조정 */
-  left: 350px;   /* ← 이 값을 더 크게 하면 오른쪽으로 이동 */
+  left: 180px;   
   top: 25%;
   transform: translateY(-50%);
   display: flex;
@@ -239,7 +238,6 @@ body {
 
 .timer-profile.red-effect {
   position: relative;
-  /* 기존 스타일 유지 */
 }
 .timer-profile.red-effect::after {
   content: '';
@@ -284,12 +282,6 @@ body {
   text-shadow: 0 2px 8px #fff, 0 1px 0 #b0c4de;
   letter-spacing: 0.1em;
   transition: color 0.2s;
-}
-
-#timer.red-time {
-  color: #ff2d2d !important;
-  text-shadow: 0 0 8px #ffbaba, 0 1px 0 #fff;
-  font-weight: 900;
 }
 
 /* 타이머 흔들림 애니메이션 */
@@ -393,7 +385,7 @@ canvas {
   background: rgba(0, 0, 0, 0.5);
   padding: 10px 20px;
   border-radius: 10px;
-  z-index: 10; /* 배경 위에 표시 */
+  z-index: 10; 
 }
 
 #msg {
@@ -407,7 +399,7 @@ canvas {
   background: rgba(0, 0, 0, 0.5);
   padding: 10px 20px;
   border-radius: 10px;
-  z-index: 10; /* 배경 위에 표시 */
+  z-index: 10; 
 }
 
 .show {
@@ -470,25 +462,23 @@ canvas {
   margin-bottom: 6px;
 }
 
-/* 좌우에 적당히 배치 */
 .player-left {
-  left: 80px;
+  left: 30px;
   top: 50%;
   transform: translateY(-50%);
 }
 .player-right {
-  right: 80px;
+  right: 30px;
   top: 50%;
   transform: translateY(-50%);
 }
 
-/* 채팅창이 항상 위에 보이도록 */
 #chatbox {
   position: fixed;
-  right: 60px;
+  right: 30px;
   bottom: 60px;
-  width: 340px;
-  min-height: 320px;
+  width: 400px;
+  min-height: 400px;
   background: #fff;
   border-radius: 18px;
   box-shadow: 0 2px 16px rgba(0,0,0,0.13);
@@ -507,7 +497,7 @@ canvas {
 .chat-emoticons {
   display: flex;
   margin-bottom: 0;
-  border-bottom: 1.5px solid #e0e0e0; /* 구분선 추가 */
+  border-bottom: 1.5px solid #e0e0e0; 
   padding: 0 0 6px 0;
   width: 100%;
   gap: 0;
@@ -528,13 +518,12 @@ canvas {
   background: #e0f0ff;
 }
 
-/* 이미지 이모티콘이 버튼을 꽉 채우도록 */
 .emoticon-btn img {
   width: 32px;
   height: 32px;
   display: block;
   margin: 0 auto;
-  pointer-events: none; /* 클릭 영역은 버튼 전체 */
+  pointer-events: none; 
   user-select: none;
   background: none;
 }
