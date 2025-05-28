@@ -4,22 +4,140 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>오목의 숲 🍀</title>
-    <link rel="stylesheet" href="../css/reset.css" />
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="icon" href="../img/sec05_chara02.png" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="img/sec05_chara02.png" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   </head>
   <body id="game">
+    <button
+      id="menuBtn"
+      style="
+        position: fixed;
+        top: 18px;
+        left: 18px;
+        z-index: 2001;
+        background: transparent;
+        border: none;
+      "
+    >
+      <img
+        src="/forestOfOmok/img/menu.png"
+        alt="메뉴"
+        style="width: 32px; height: 32px"
+      />
+    </button>
+    <div id="background"></div>
+
     <!-- 브금 제어 버튼 -->
     <div id="playico"></div>
     <div onclick="window.playBGM()" id="play"></div>
     <div onclick="window.stopBGM()" id="stop"></div>
-    <div class="container game">
-      <header></header>
-      <div class="content"></div>
-      <footer></footer>
+
+    <!-- 항복 버튼 -->
+    <button
+      id="resignBtn"
+      style="
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 10;
+        background: transparent;
+        border: none;
+        padding: 0;
+      "
+    >
+      <img
+        src="/forestOfOmok/img/flag.png"
+        alt="항복"
+        style="width: 32px; height: 32px"
+      />
+    </button>
+
+    <!-- 누구 차례인지 표시 -->
+    <div id="info">1st player's turn</div>
+
+    <!-- 승리 메시지 표시 -->
+    <div id="msg"></div>
+
+    <!-- 타이머 -->
+    <div class="timer-wrap">
+      <img src="/forestOfOmok/img/bomb.png" class="timer-profile" alt="타이머 프로필" />
+      <div class="timer-box">
+        <span id="timer">0:30</span>
+      </div>
     </div>
-    <!-- 모달창 -->
+
+    <!-- 게임 컨테이너 -->
+    <div
+      class="container game"
+      style="
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      "
+    >
+      <!-- 왼쪽(1번) 플레이어 정보 -->
+      <div class="player-info player-left">
+        <img
+          src="/forestOfOmok/img/player1.png"
+          alt="플레이어1"
+          class="player-photo"
+        />
+        <div class="player-nickname">SSud</div>
+        <div class="player-record">10승 3패</div>
+        <div class="player-stone player-stone-white" title="백돌"></div>
+      </div>
+      <!-- 오른쪽(2번) 플레이어 정보 -->
+      <div class="player-info player-right">
+        <img
+          src="/forestOfOmok/img/player2.png"
+          alt="플레이어2"
+          class="player-photo"
+        /> 	
+        <div class="player-nickname">sngsngUDON</div>
+        <div class="player-record">7승 8패</div>
+        <div class="player-stone player-stone-black" title="흑돌"></div>
+      </div>
+      <header></header>
+    </div>
+    <!-- 항복 모달 -->
+    <div
+      id="resignQuestion"
+      style="
+        display: none;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+      "
+    >
+      <div
+        style="
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: #fff;
+          padding: 30px 40px;
+          border-radius: 10px;
+          text-align: center;
+          box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
+        "
+      >
+        <div style="margin-bottom: 20px; font-size: 1.2em">
+          정말 항복하시겠습니까?
+        </div>
+        <button id="resignYes" style="margin-right: 20px">예</button>
+        <button id="resignNo">아니오</button>
+      </div>
+    </div>
+
+    <!-- 모달 컴포넌트 -->
     <div id="modalComponent" style="opacity: 0"></div>
     <script>
       $(function () {
@@ -27,5 +145,66 @@
         $("#modalComponent").load("modal.html");
       });
     </script>
+
+    <script src="main.js"></script>
+
+    <!-- 채팅 박스 -->
+    <div id="chatbox">
+      <div class="chat-header">채팅</div>
+      <!-- 이모티콘 버튼 부분 교체 -->
+      <div class="chat-emoticons">
+        <button class="emoticon-btn">
+          <img
+            src="/forestOfOmok/img/emoticon1.png"
+            alt="..."
+            style="width: 32px; height: 32px"
+          />
+        </button>
+        <button class="emoticon-btn">
+          <img
+            src="/forestOfOmok/img/emoticon2.png"
+            alt="..."
+            style="width: 32px; height: 32px"
+          />
+        </button>
+        <button class="emoticon-btn">
+          <img
+            src="/forestOfOmok/img/emoticon3.png"
+            alt="..."
+            style="width: 32px; height: 32px"
+          />
+        </button>
+        <button class="emoticon-btn">
+          <img
+            src="/forestOfOmok/img/emoticon4.png"
+            alt="..."
+            style="width: 32px; height: 32px"
+          />
+        </button>
+        <button class="emoticon-btn">
+          <img
+            src="/forestOfOmok/img/emoticon5.png"
+            alt="..."
+            style="width: 32px; height: 32px"
+          />
+        </button>
+        <button class="emoticon-btn">
+          <img
+            src="/forestOfOmok/img/emoticon6.png"
+            alt="..."
+            style="width: 32px; height: 32px"
+          />
+        </button>
+      </div>
+      <div class="chat-messages"></div>
+      <div class="chat-input-wrap">
+        <input
+          type="text"
+          class="chat-input"
+          placeholder="메시지를 입력하세요..."
+        />
+        <button class="chat-send-btn">전송</button>
+      </div>
+    </div>
   </body>
 </html>
