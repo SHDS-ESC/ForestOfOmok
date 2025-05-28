@@ -14,7 +14,7 @@ import model.OmokBoard;
  * /room?gameId=value
  */
 @WebServlet("/room")
-public class OmokGameServlet extends HttpServlet {
+public class OmokGameRoomServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doHandle(request, response);
@@ -28,16 +28,11 @@ public class OmokGameServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		
 		// 방 처리 로직..
-		String gameId = request.getParameter("gameId");
-		
-		
-		
+		String roomId = (String)request.getAttribute("roomId");
+		System.out.println(roomId + " " + request.getContextPath());
 		// 방으로 이동 시키기
-		request.getRequestDispatcher("/html/game.html").forward(request, response);
-		
-		
-		
-		
+//		request.getRequestDispatcher("/html/game.html").forward(request, response);
+		response.sendRedirect(request.getContextPath() + "/html/game.html?roomId=" + roomId);
 		
 	}
 	
