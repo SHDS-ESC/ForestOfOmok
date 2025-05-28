@@ -1,186 +1,168 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>오목의 숲 🍀</title>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>오목의 숲 🍀</title>
 
 <!-- <link rel="stylesheet" href="../css/reset.css" /> -->
-    <link rel="stylesheet" href="/forestOfOmok/css/reset.css" />
-    <link rel="stylesheet" href="/forestOfOmok/css/style.css" />
-    <link rel="icon" href="../img/sec05_chara02.png" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="../js/utils.js"></script>
-  </head>
-  <body>
-    <!-- 브금 제어 버튼 -->
-    <div id="playico"></div>
-    <div onclick="window.playBGM()" id="play"></div>
-    <div onclick="window.stopBGM()" id="stop"></div>
-    <!-- 브금 제어 버튼 -->
-    <!-- 임시 버튼 -->
-    <img src="/forestOfOmok/img/sec09_chara03.png" alt="" id="moveLoginBtn" />
-    <img
-      src="/forestOfOmok/img/slowlife_chara01__pc.png"
-      alt=""
-      id="moveGameBtn"
-    />
-    <!-- 임시 버튼 -->
-    <!-- 임시 버튼 -->
-    <div class="container main">
-      <header>
-        <span></span>
-        <div class="searchBox">
-          <section class="input-container">
-            <label>
-              <input id="searchInput" type="text" placeholder="검색어 입력" />
-              <p class="hspan">검색어 입력</p>
-            </label>
-            <button type="button" class="search-btn">검색</button>
-          </section>
-        </div>
-      </header>
-      <div class="content">
-        <div class="sideBoxL">
-          <div class="profileBox">
-            <div class="img"></div>
-            <div class="textBox">
-              <p>닉네임 : 테스트</p>
-              <p>
-                <span class="blue">100</span> 승 <span class="red">1</span> 패
-              </p>
-              <p>현재 순위 : <span class="yellow">1</span> 등</p>
-            </div>
-            <div class="createRommBtn"></div>
-          </div>
-          <div class="RankBox">
-            <!-- 여기부터 지원 작성 -->
-            <div class="rankTitle"></div>
-            <ul class="rankList">
-              <li class="rankItem">
-                <span class="rankProfileName"> 1등 </span>
-                <span>
-                  <img class="rankProfile" src="../img/img-rank1.png" />
-                </span>
-                <span class="rankProfileName"> 닉네임 </span>
-              </li>
+<link rel="stylesheet" href="/forestOfOmok/css/reset.css" />
+<link rel="stylesheet" href="/forestOfOmok/css/style.css" />
+<link rel="icon" href="../img/sec05_chara02.png" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="../js/utils.js"></script>
+</head>
+<body>
+	<!-- 브금 제어 버튼 -->
+	<div id="playico"></div>
+	<div onclick="window.playBGM()" id="play"></div>
+	<div onclick="window.stopBGM()" id="stop"></div>
+	<!-- 브금 제어 버튼 -->
+	<!-- 임시 버튼 -->
+	<img src="/forestOfOmok/img/sec09_chara03.png" alt="" id="moveLoginBtn" />
+	<img src="/forestOfOmok/img/slowlife_chara01__pc.png" alt=""
+		id="moveGameBtn" />
+	<!-- 임시 버튼 -->
+	<!-- 임시 버튼 -->
+	<div class="container main">
+		<header>
+			<span></span>
+			<div class="searchBox">
+				<section class="input-container">
+					<label> <input id="searchInput" type="text"
+						placeholder="검색어 입력" />
+						<p class="hspan">검색어 입력</p>
+					</label>
+					<button type="button" class="search-btn">검색</button>
+				</section>
+			</div>
+		</header>
+		<div class="content">
+			<div class="sideBoxL">
+				<div class="profileBox">
+					<div class="img"></div>
+					<div class="textBox">
+						<p>닉네임 : 테스트</p>
+						<p>
+							<span class="blue">100</span> 승 <span class="red">1</span> 패
+						</p>
+						<p>
+							현재 순위 : <span class="yellow">1</span> 등
+						</p>
+					</div>
+					<div class="createRommBtn"></div>
+				</div>
+				<div class="RankBox">
+					<!-- 여기부터 지원 작성 -->
+					<div class="rankTitle"></div>
+					<ul class="rankList">
+						<li class="rankItem"><span class="rankProfileName"> 1등
+						</span> <span> <img class="rankProfile" src="../img/img-rank1.png" />
+						</span> <span class="rankProfileName"> 닉네임 </span></li>
 
-              <li class="rankItem">
-                <span class="rankProfileName"> 2등 </span>
-                <span>
-                  <img class="rankProfile" src="../img/img-rank1.png" />
-                </span>
-                <span class="rankProfileName"> 닉네임 </span>
-              </li>
+						<li class="rankItem"><span class="rankProfileName"> 2등
+						</span> <span> <img class="rankProfile" src="../img/img-rank1.png" />
+						</span> <span class="rankProfileName"> 닉네임 </span></li>
 
-              <li class="rankItem">
-                <span class="rankProfileName"> 3등 </span>
-                <span>
-                  <img class="rankProfile" src="../img/img-rank1.png" />
-                </span>
-                <span class="rankProfileName"> 닉네임 </span>
-              </li>
-            </ul>
-          </div>
-          <div class="createRommBtn"></div>
-        </div>
-        <div class="sideBoxR">
-          <ul class="tabs">
-            <li class="active">게임하기 🎮</li>
-            <li>전적보기 🏆</li>
-          </ul>
-          <div class="tabContainer">
-            <div>
-              <!-- 방 없을 때  -->
-              <div class="emptyRoom">
-                <span></span>
-                <p>아직 방이 없어요</p>
-                <p>방을 만들어서 시작해주세요!</p>
-              </div>
-              <!-- 방 있을 때 -->
-              <ul class="roomList" style="display: none">
-                <li class="roomItem play">
-                  <p class="title">✨ 새 방 생성123</p>
-                  <div class="text"><span>play 🔥</span> 1 / 2</div>
-                </li>
-                <li class="roomItem play">
-                  <p class="title">🍀 힐링의 숲</p>
-                  <div class="text"><span>play 🔥</span> 1 / 2</div>
-                </li>
-                <li class="roomItem play">
-                  <p class="title">🌙 밤하늘의 방</p>
-                  <div class="text"><span>play 🔥</span> 1 / 2</div>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <!-- 방 없을 때  -->
-              <!-- <div class="emptyHistory">
+						<li class="rankItem"><span class="rankProfileName"> 3등
+						</span> <span> <img class="rankProfile" src="../img/img-rank1.png" />
+						</span> <span class="rankProfileName"> 닉네임 </span></li>
+					</ul>
+				</div>
+				<div class="createRommBtn"></div>
+			</div>
+			<div class="sideBoxR">
+				<ul class="tabs">
+					<li class="active">게임하기 🎮</li>
+					<li>전적보기 🏆</li>
+				</ul>
+				<div class="tabContainer">
+					<div>
+						<!-- 방 없을 때  -->
+						<div class="emptyRoom">
+							<span></span>
+							<p>아직 방이 없어요</p>
+							<p>방을 만들어서 시작해주세요!</p>
+						</div>
+						<!-- 방 있을 때 -->
+						<ul class="roomList" style="display: none">
+							<li class="roomItem play">
+								<p class="title">✨ 새 방 생성123</p>
+								<div class="text">
+									<span>play 🔥</span> 1 / 2
+								</div>
+							</li>
+							<li class="roomItem play">
+								<p class="title">🍀 힐링의 숲</p>
+								<div class="text">
+									<span>play 🔥</span> 1 / 2
+								</div>
+							</li>
+							<li class="roomItem play">
+								<p class="title">🌙 밤하늘의 방</p>
+								<div class="text">
+									<span>play 🔥</span> 1 / 2
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div>
+						<!-- 방 없을 때  -->
+						<!-- <div class="emptyHistory">
                 <span></span>
                 <p>아직 전적이 없어요</p>
                 <p>게임을 시작해보세요!</p>
               </div> -->
-              <!-- 전적 아이템 -->
-              <ul class="historyList">
-                <li>
-                  <div class="historyItem">
-                    <div class="historyItemL">
-                      <span class="historyStoneInfoMe">승</span>
-                      <img
-                        class="historyProfileMe"
-                        src="../img/img-rank1.png"
-                      />
-                      <span class="historyNickNameMe">곰돌이</span>
-                    </div>
-                    <div class="historyItemR">
-                      <span class="historyNickNameYou">앉아있는 고양이</span>
-                      <img
-                        class="historyProfileYou"
-                        src="../img/img-rank1.png"
-                      />
-                      <span class="historyStoneInfoYou">패</span>
-                    </div>
-                  </div>
-                  <div class="historyPannel">
-                    <div class="historyTime">시간 :</div>
-                    <div class="historyTurn">턴수 :</div>
-                  </div>
-                </li>
+						<!-- 전적 아이템 -->
+						<ul class="historyList">
+							<li>
+								<div class="historyItem">
+									<div class="historyItemL">
+										<span class="historyStoneInfoMe">승</span> <img
+											class="historyProfileMe" src="../img/img-rank1.png" />
+										<span class="historyNickNameMe">곰돌이</span>
+									</div>
+									<div class="historyItemR">
+										<span class="historyNickNameYou">앉아있는 고양이</span> <img
+											class="historyProfileYou" src="../img/img-rank1.png" />
+										<span class="historyStoneInfoYou">패</span>
+									</div>
+								</div>
+								<div class="historyPannel">
+									<div class="historyTime">시간 :</div>
+									<div class="historyTurn">턴수 :</div>
+								</div>
+							</li>
 
-                <li>
-                  <div class="historyItem">
-                    <div class="historyItemL">
-                      <span class="historyStoneInfoMe">패</span>
-                      <img
-                        class="historyProfileMe"
-                        src="../img/img-rank1.png"
-                      />
-                      <span class="historyNickNameMe">앉아있는 고양이</span>
-                    </div>
-                    <div class="historyItemR">
-                      <span class="historyNickNameYou">곰돌이</span>
-                      <img
-                        class="historyProfileYou"
-                        src="../img/img-rank1.png"
-                      />
-                      <span class="historyStoneInfoYou">승</span>
-                    </div>
-                  </div>
-                  <div class="historyPannel">
-                    <div class="historyTime">시간 :</div>
-                    <div class="historyTurn">턴수 :</div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <!-- style="display:none" -->
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- 모달창 -->
-    <div id="modalComponent"></div>
-    <script>
+							<li>
+								<div class="historyItem">
+									<div class="historyItemL">
+										<span class="historyStoneInfoMe">패</span> <img
+											class="historyProfileMe" src="../img/img-rank1.png" />
+										<span class="historyNickNameMe">앉아있는 고양이</span>
+									</div>
+									<div class="historyItemR">
+										<span class="historyNickNameYou">곰돌이</span> <img
+											class="historyProfileYou" src="../img/img-rank1.png" />
+										<span class="historyStoneInfoYou">승</span>
+									</div>
+								</div>
+								<div class="historyPannel">
+									<div class="historyTime">시간 :</div>
+									<div class="historyTurn">턴수 :</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!-- style="display:none" -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 모달창 -->
+	<div id="modalComponent"></div>
+	<script>
 	
     
     
@@ -188,20 +170,22 @@
         let test = false; // 임시
         
         // api 템플릿
-        let connectApi = function(url, method){$.ajax({
-            url: url,
-            method: method,
-            data: {},
-            dataType: "json",
-            success: function(res){
-            	console.log(res)
-            },
-            error: function(){
-            	console.log("실패")
-            },
-          });   
-    	return res;
-    	}
+    	let connectApi = function(url, method, callback) {
+    	$.ajax({
+        	url: url,
+        	method: method,
+        	data: {},
+        	dataType: "json",
+        	success: function(res) {
+            	console.log(res);
+            	if (callback) callback(res); // 콜백으로 결과 전달
+        	},
+        	error: function() {
+            	console.log("실패");
+            	if (callback) callback(null); // 에러 시 null 전달
+            	},
+        	});
+    	};
 
         // modal.html 불러오기
         $("#modalComponent").load("/forestOfOmok/html/modal.html");
@@ -356,8 +340,21 @@
      
      
 
-        connectApi("https://dummyjson.com/posts/tags","GET");
-      })
+        connectApi("http://localhost:8092/forestOfOmok/main/profile", "GET", function(data) {
+            if (data) {
+                // 성공했을 때 처리
+            console.log("받은 데이터:", data);
+                $(".profileBox .img").css("background-image", "url(" + data.imgPath + ")"); // 프로필
+                $(".textBox p:first").text(data.name); // 닉네임
+                $(".blue").text(data.winCnt); // 승
+                $(".red").text(data.loseCnt); // 패
+                // 여기서 DOM 조작이나 다른 작업 수행
+            } else {
+                // 실패했을 때 처리
+            console.log("데이터 로딩 실패");
+            }
+        });      
+     })
     </script>
-  </body>
+</body>
 </html>
