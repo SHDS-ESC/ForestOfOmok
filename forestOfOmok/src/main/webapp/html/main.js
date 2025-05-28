@@ -221,14 +221,25 @@ function countOpenN(row, column, player, n) {
  isItemClicked = (event) => {
     cell = event.target.cellProperties;
     
+    // url의 쿼리스트링 roomId 추출
+    const params = new URLSearchParams(location.search);
+	const roomId = params.get('roomId');
+    
 	$.ajax({
 	  url: '/forestOfOmok/omokTurn',
 	  type: 'POST',
 	  contentType: 'application/json; charset=UTF-8',
-	  data: JSON.stringify({ row: cell.row, col: cell.column}),
+	  data: JSON.stringify({ roomId: roomId, row: cell.row, col: cell.column}),
 	  success: function(response) {
 		console.log("서버 응답 : ", response);
-		alert("서버 메세지 : " + response.msg);
+		
+		
+		if (response.result === "invalid") {
+			//
+		}
+		
+		
+		
 	  },
       error: function(xhr, status, error) {
 	    console.log(xhr, status, error);

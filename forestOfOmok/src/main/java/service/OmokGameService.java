@@ -4,27 +4,28 @@ import model.OmokBoard;
 import model.OmokGame;
 import model.OmokGameDTO;
 
-public class OmokService {
+public class OmokGameService {
 	
 	
-	public static void omokTurn(String gameId, int row, int col) {
+	public static String omokTurn(String gameId, int row, int col) {
+		return "success";
 		
 		// 1. game 객체 찾고 (소켓에서)
 //		OmokGame game = socket.getOmokGame(gameId);
-		OmokGame game = new OmokGame(null, null);
+//		OmokGame game = new OmokGame(null, null);
 		
 		// 2. validation check
-		if (isValidateCoord(game, row, col)) {
+//		if (isValidateCoord(game, row, col)) {
 			// 가능
 			
-		} else {
+//		} else {
 			// 불가능
 			
-		}
+//		}
 		
 		// 3. 
 		
-		
+//		return "success";
 	}
 	
 	private static boolean isValidateCoord(OmokGame game, int row, int col) {
