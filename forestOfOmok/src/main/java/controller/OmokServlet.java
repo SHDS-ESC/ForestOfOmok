@@ -23,7 +23,7 @@ public class OmokServlet extends HttpServlet {
 
 	protected void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
-		request.getRequestDispatcher("/html/index.html").forward(request, response);
+		request.getRequestDispatcher("/html/game.html").forward(request, response);
 		
 	}
 	

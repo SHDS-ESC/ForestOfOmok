@@ -1,7 +1,5 @@
 @charset "UTF-8";
 
-/* gahee */
-
 @font-face {
   font-family: "yg-jalnan";
   src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff")
@@ -153,13 +151,16 @@ footer {
   font-weight: bold;
   transition: background 0.3s;
 }
+
 .on-btn:hover,
 .off-btn:hover {
   background: #0063a9;
 }
+
 .hidden {
   display: none;
 }
+
 @keyframes popIn {
   0% {
     transform: translate(-50%, -50%) scale(0.5) rotate(-7deg);
@@ -186,10 +187,9 @@ footer {
   }
 }
 
-/*sunwoo*/
-/*start*/
+/* start */
 .start header span {
-  background-image: url("../img/logo.png");
+  background-image: url("/forestOfOmok/img/logo.png");
   width: 340px;
   height: 190px;
   background-position: center;
@@ -208,6 +208,12 @@ footer {
 }
 
 /* main */
+.container.main {
+}
+.main header {
+  height: 80px;
+  background-color: #ffffff9e;
+}
 
 .container.main {
 }
@@ -313,11 +319,96 @@ footer {
   padding: 20px;
 }
 
-/* jiwon */
+.container.main .sideBoxL {
+  width: 35%;
+  background-color: #ffffffc8;
+  height: 100%;
+}
+
+.container.main .profileBox {
+  background-color: #ffffffa4;
+  border-radius: 20px;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.203), 0 15px 12px rgba(0, 0, 0, 0.176);
+  padding: 30px 0;
+  text-align: center;
+  margin: 20px;
+}
+
+.container.main .profileBox .img {
+  background-image: url("/forestOfOmok/img/animal2.png");
+  width: 200px;
+  height: 200px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: auto;
+  border-radius: 50%;
+  border: 6px solid rgba(20, 20, 20, 0.132);
+}
+
+.container.main .profileBox .textBox {
+  text-align: center;
+  padding: 30px 0 0 0;
+}
+.container.main .profileBox .textBox p {
+  margin-bottom: 4px;
+}
+.container.main .profileBox .textBox .blue {
+  color: rgb(25, 163, 217);
+}
+.container.main .profileBox .textBox .red {
+  color: rgb(255, 107, 132);
+}
+.container.main .profileBox .textBox .yellow {
+  color: rgb(234, 176, 0);
+}
+
+.container.main .profileBox .createRommBtn {
+  animation: shake 1.5s infinite;
+  background-image: url("/forestOfOmok/img/Group 23.png");
+  cursor: pointer;
+  transition: 0.2s;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 200px;
+  height: 80px;
+  margin: auto;
+}
+
+.container.main .profileBox .createRommBtn:hover {
+  background-image: url("/forestOfOmok/img/Group 23.png");
+}
+
+.container.main .RankBox {
+  background-color: #555;
+  margin: 20px;
+  min-height: 226px;
+  border-radius: 15px;
+}
+
+.container.main .sideBoxR {
+  width: 65%;
+  background-color: #333;
+  height: 100%;
+}
+
+.container.main .sideBoxR .roomList {
+  height: 596px;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.container.main .sideBoxR .roomItem {
+  background-color: #666;
+  margin-bottom: 8px;
+  border-radius: 20px;
+  padding: 20px;
+}
 
 /* rank */
 .container.main .rankTitle {
-  background-image: url("../img/RankTitle.svg");
+  background-image: url("/forestOfOmok/img/RankTitle.svg");
   background-position: center;
   background-repeat: no-repeat;
   width: 200px;
@@ -355,18 +446,30 @@ footer {
   line-height: 55px;
 }
 
-/* scrollbar */
-/* .container.main .sideBoxL .rankList::-webkit-scrollbar { display: none; } */
+.container.main .sideBoxL .rankItem {
+  background-color: #ffffffe7;
+  margin-bottom: 8px;
+  border-radius: 15px;
+  padding: 0 20px;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.203), 0 15px 12px rgba(0, 0, 0, 0.176);
+}
 
-/* 스크롤 바 스타일 연습 */
-/* .container.main .sideBoxL .rankList::-webkit-scrollbar-thumb { background-color: #e2e2e2; border-radius: 10px;}
-.container.main .sideBoxL .rankList::-webkit-scrollbar-track { background-color: #adadad; border-radius: 10px; }
-.container.main .sideBoxL .rankList::-webkit-scrollbar { width: 10px;} */
+.container.main .sideBoxL .rankProfile {
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+  padding: 0 20px 0 10px;
+}
+
+.container.main .sideBoxL .rankProfileName {
+  line-height: 55px;
+}
 
 .container.main .profileBox .createRommBtn:hover {
   animation: none;
-  background-image: url("../img/Group 22.png");
+  background-image: url("/forestOfOmok/img/Group 22.png");
 }
+
 .container.main .RankBox {
   background-color: #ffffff9b;
   border-radius: 20px;
@@ -374,18 +477,21 @@ footer {
   margin: 20px;
   min-height: 226px;
 }
+
 .container.main .sideBoxR {
   width: 65%;
   background-color: #ffffffbc;
   height: unset;
   padding: 20px 20px 0 0;
 }
+
 .container.main .sideBoxR .emptyRoom {
   margin-top: 100px;
 }
+
 .container.main .sideBoxR .emptyRoom span {
   display: block;
-  background-image: url("../img/sec03_img.png");
+  background-image: url("/forestOfOmok/img/sec03_img.png");
   width: 300px;
   height: 300px;
   background-repeat: no-repeat;
@@ -409,6 +515,7 @@ footer {
   overflow-y: scroll;
   margin-top: 0;
 }
+
 .container.main .sideBoxR .roomItem {
   background-color: #ffffffe7;
   cursor: pointer;
