@@ -11,7 +11,7 @@
   <div id="log" style="margin-top:20px; border:1px solid #ccc; padding:10px; height:200px; overflow:auto;"></div>
 
   <script>
-    var ws = new WebSocket("ws://localhost:8092/forestOfOmok/chat");
+    var ws = new WebSocket("ws://localhost:8092/forestOfOmok/server");
     var log = document.getElementById("log");
 
     ws.onopen = function() {

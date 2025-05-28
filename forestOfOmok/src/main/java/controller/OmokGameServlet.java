@@ -33,7 +33,7 @@ public class OmokGameServlet extends HttpServlet {
 		
 		
 		// 방으로 이동 시키기
-		request.getRequestDispatcher("/html/index.html").forward(request, response);
+		request.getRequestDispatcher("/html/game.html").forward(request, response);
 		
 		
 		

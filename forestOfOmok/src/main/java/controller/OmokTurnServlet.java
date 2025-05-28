@@ -52,7 +52,7 @@ public class OmokTurnServlet extends HttpServlet {
 		int col = json.getInt("col");
 		
 		// 3. 로직 처리
-		OmokService.omokTurn(gameId, row, col);
+//		OmokService.omokTurn(gameId, row, col);
 		
 		
 		// 4. 응답
