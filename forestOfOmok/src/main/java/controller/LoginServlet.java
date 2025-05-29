@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
 	protected void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
 		request.setCharacterEncoding("UTF-8");
-		//		request.getRequestDispatcher("forestOfOmok/html/login.html").forward(request, response);
+		
 
 		String name = request.getParameter("name");
 		String pwd = request.getParameter("pwd");
@@ -39,7 +39,6 @@ public class LoginServlet extends HttpServlet {
 		if(user != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("userId",user.getUserId());
-			System.out.println(user.getUserId());
 			request.getRequestDispatcher("/main").forward(request, response);
 		} else {
 			// 로그인 실패: 에러 메시지를 함께 전달하고 다시 로그인 페이지로 포워드
