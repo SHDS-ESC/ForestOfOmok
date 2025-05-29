@@ -30,7 +30,6 @@ public class OmokGameService {
 	
 	private static boolean isValidateCoord(OmokGame game, int row, int col) {
 		
-		OmokGameDTO dto = game.getDto();
 		OmokBoard board = game.getBoard();
 		
 		int boardRow = board.getRowCount();

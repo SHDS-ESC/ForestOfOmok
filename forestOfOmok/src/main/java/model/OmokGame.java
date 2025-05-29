@@ -5,11 +5,11 @@ import lombok.Data;
 @Data
 public class OmokGame {
 	
-	OmokGameDTO dto;
+	OmokGameDTO game;
 	OmokBoard board;
 	
-	public OmokGame(OmokGameDTO dto, OmokBoard board) {
-		this.dto = dto;
+	public OmokGame(OmokGameDTO game, OmokBoard board) {
+		this.game = game;
 		this.board = board;
 	}
 	
