@@ -185,7 +185,7 @@ input[type="email"] {
 }
 
 /* 이미지 선택 모달 */
-.modal {
+.modal2 {
     position: fixed;
     top: 0;
     left: 0;
@@ -199,7 +199,7 @@ input[type="email"] {
     z-index: 999;
 }
 
-.hidden {
+.modal2 .hidden {
     display: none;
 }
 
