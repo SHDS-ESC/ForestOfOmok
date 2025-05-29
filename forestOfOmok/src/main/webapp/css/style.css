@@ -102,16 +102,25 @@ footer {
   z-index: 1000;
   animation: popIn 0.6s ease;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> ab6d98fa28196e296236e927b65c63fb88d52b30
 .modal h2 {
   margin: 0 0 20px;
   color: #0095ff;
   font-weight: bold;
   font-size: 20px;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> ab6d98fa28196e296236e927b65c63fb88d52b30
 .modal p {
   color: #333;
   margin-bottom: 20px;
 }
+<<<<<<< HEAD
 .modal p span {
   display: inline-block;
 }
@@ -127,6 +136,18 @@ footer {
 .modal p .green {
   color: rgb(1, 156, 47);
 }
+=======
+
+.modal p span {
+  display: inline-block;
+}
+
+.modal p .pink { color: rgb(255, 107, 132); }
+.modal p .blue { color: rgb(67, 171, 211); }
+.modal p .yellow { color: rgb(244, 192, 36); }
+.modal p .green { color: rgb(1, 156, 47); }
+
+>>>>>>> ab6d98fa28196e296236e927b65c63fb88d52b30
 .close-btn {
   background: #0095ff;
   color: white;
@@ -554,9 +575,18 @@ footer {
 }
 
 /* game */
+<<<<<<< HEAD
 .container.game {
   background-color: #ffffff9e;
 }
+=======
+.container.game{ background-color: #ffffff9e;
+         width : 1000px;  
+         height : 700px;
+ }
+
+
+>>>>>>> ab6d98fa28196e296236e927b65c63fb88d52b30
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
 
@@ -584,8 +614,12 @@ body {
 
 .timer-wrap {
   position: fixed;
+<<<<<<< HEAD
   /* container 왼쪽 바깥, 중간쯤에 오도록 조정 */
   left: 180px; /* ← 이 값을 더 크게 하면 오른쪽으로 이동 */
+=======
+  left: 180px;   
+>>>>>>> ab6d98fa28196e296236e927b65c63fb88d52b30
   top: 25%;
   transform: translateY(-50%);
   display: flex;
@@ -630,7 +664,6 @@ body {
 
 .timer-profile.red-effect {
   position: relative;
-  /* 기존 스타일 유지 */
 }
 .timer-profile.red-effect::after {
   content: "";
@@ -788,11 +821,10 @@ canvas {
 }
 
 #items > div > div.player-1::after {
-  background-image: linear-gradient(315deg, #999 0%, #fff 74%);
-}
-
-#items > div > div.player-2::after {
   background-image: linear-gradient(315deg, #000 0%, #444 74%);
+}
+#items > div > div.player-2::after {
+  background-image: linear-gradient(315deg, #fff 0%, #ddd 74%);
 }
 
 /***********
@@ -824,7 +856,7 @@ canvas {
   background: rgba(0, 0, 0, 0.5);
   padding: 10px 20px;
   border-radius: 10px;
-  z-index: 10; /* 배경 위에 표시 */
+  z-index: 10; /* 배경 위에 표시 */ 
 }
 
 .show {
@@ -894,6 +926,7 @@ canvas {
 }
 .player-right {
   right: 30px;
+  left: auto;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -901,9 +934,9 @@ canvas {
 #chatbox {
   position: fixed;
   right: 30px;
-  bottom: 60px;
+  bottom: 20px;
   width: 400px;
-  min-height: 400px;
+  min-height: 500px;
   background: #fff;
   border-radius: 18px;
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.13);
@@ -1005,6 +1038,257 @@ canvas {
   background: linear-gradient(135deg, #fff 70%, #ddd 100%);
   border: 2.5px solid #bbb;
 }
+.turn-crown {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 38px;
+  height: 38px;
+  z-index: 20;
+  pointer-events: none;
+}
+.player-info {
+  position: absolute;
+}
+
+/* 승리 모달 스타일 */
+#winModal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.45);
+  z-index: 5000;
+  animation: fadeIn 0.4s;
+}
+#winModal .win-modal-inner {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255,255,255,0.97);
+  border-radius: 32px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+  padding: 56px 48px 40px 48px;
+  min-width: 340px;
+  text-align: center;
+  border: 4px solid #0095ff;
+}
+#winModalMsg {
+  font-size: 2.1em;
+  font-weight: bold;
+  margin-bottom: 36px;
+  color: #0095ff;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px #b2e4ff;
+}
+#rematchBtn, #exitBtn {
+  font-size: 1.2em;
+  padding: 14px 40px;
+  border-radius: 12px;
+  border: none;
+  margin: 0 12px;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: background 0.2s, color 0.2s;
+}
+#rematchBtn {
+  background: linear-gradient(90deg, #0095ff 60%, #00e0ff 100%);
+  color: #fff;
+  cursor: pointer;
+}
+#rematchBtn:disabled {
+  background: #b2e4ff;
+  color: #fff;
+  cursor: not-allowed;
+}
+#exitBtn {
+  background: #eee;
+  color: #666;
+  cursor: not-allowed;
+}
+#rematchInfo {
+  margin-top: 22px;
+  color: #0095ff;
+  font-size: 1.1em;
+  display: none;
+  letter-spacing: 1px;
+}
+
+/* alert 모달 스타일 */
+.alert-modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.25);
+  z-index: 6000;
+  animation: fadeIn 0.2s;
+}
+.alert-modal-inner {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  padding: 36px 36px 24px 36px;
+  min-width: 260px;
+  text-align: center;
+  border: 2.5px solid #0095ff;
+}
+#alertMsg {
+  font-size: 1.3em;
+  color: #0095ff;
+  font-weight: bold;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+}
+#alertCloseBtn {
+  font-size: 1em;
+  padding: 8px 28px;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(90deg, #0095ff 60%, #00e0ff 100%);
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+#alertCloseBtn:hover {
+  background: #0074c2;
+}
+.omokRuleBox {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #f9f6f2 80%, #e0f7fa 100%);
+  border-radius: 18px;
+  font-size: 15px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+  overflow: hidden;
+  border: 2.5px solid #0095ff;
+  transition: box-shadow 0.2s, border 0.2s;
+}
+.omokRuleBox,
+.omokRuleBox-left,
+.omokRuleBox-inner,
+.omokRuleBox-slide,
+.omokRuleTitle,
+.omokTipsTitle,
+.omokRuleList,
+.omokTipsList,
+.omokRuleList li,
+.omokTipsList li {
+  font-family: 'yg-jalnan', 'Roboto', 'Malgun Gothic', '맑은 고딕', Arial, sans-serif !important;
+  font-weight: bold !important;
+  letter-spacing: 0.5px;
+}
+
+.omokRuleTitle, .omokTipsTitle {
+  font-size: 1.18em;
+  font-weight: 900 !important;
+  color: #0074c2;
+  letter-spacing: 1.2px;
+  text-shadow: 0 1px 0 #fff, 0 0 8px #b2e4ff44;
+}
+
+.omokRuleList li, .omokTipsList li {
+  font-size: 1.07em;
+  font-weight: bold !important;
+  color: #222;
+  line-height: 1.7;
+}
+.omokRuleBox-left {
+  position: fixed;
+  left: 20px;         
+  bottom: 30px;
+  width: 400px;       
+  max-width: 90vw;
+  z-index: 200;
+  margin: 0;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.13);
+}
+.omokRuleBox-inner {
+  min-height: 180px;
+  padding: 18px 24px 10px 24px;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  position: relative;
+  background: none;
+}
+/* 왼쪽(이전) 버튼 숨기기 */
+.omokRuleBox-prev {
+  display: none !important;
+}
+.omokRuleBox-slide {
+  flex: 1 0 0;
+  display: none;
+  animation: fadeIn 0.4s;
+  min-width: 0;
+}
+.omokRuleBox-slide-active {
+  display: block;
+}
+.omokRuleBox-nav {
+  background: #fff;
+  border: none;
+  color: #0095ff;
+  font-size: 1.7em;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  cursor: pointer;
+  margin: 0 8px;
+  align-self: center;
+  transition: background 0.2s, color 0.2s;
+}
+.omokRuleBox-nav:hover {
+  background: #e0f7fa;
+  color: #0074c2;
+}
+.omokRuleTitle, .omokTipsTitle {
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #0095ff;
+  font-size: 1.13em;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 0 #fff, 0 0 8px #b2e4ff44;
+}
+.omokRuleList, .omokTipsList {
+  margin: 0 0 10px 0;
+  padding-left: 18px;
+}
+.omokRuleList li, .omokTipsList li {
+  margin-bottom: 6px;
+  line-height: 1.6;
+  color: #3b2e1a;
+  font-size: 1em;
+}
+.omokRuleBox-dots {
+  text-align: center;
+  padding-bottom: 10px;
+  background: none;
+}
+.omokRuleBox-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin: 0 4px;
+  background: #b2e4ff;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s;
+  border: 2px solid #fff;
+}
+.omokRuleBox-dot-active {
+  background: #0095ff;
+  border: 2px solid #0095ff;
+}
+
+
+
 
 /*sunwoo*/
 /*start*/
