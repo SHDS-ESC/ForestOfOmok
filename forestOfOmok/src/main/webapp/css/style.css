@@ -102,25 +102,16 @@ footer {
   z-index: 1000;
   animation: popIn 0.6s ease;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> ab6d98fa28196e296236e927b65c63fb88d52b30
 .modal h2 {
   margin: 0 0 20px;
   color: #0095ff;
   font-weight: bold;
   font-size: 20px;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> ab6d98fa28196e296236e927b65c63fb88d52b30
 .modal p {
   color: #333;
   margin-bottom: 20px;
 }
-<<<<<<< HEAD
 .modal p span {
   display: inline-block;
 }
@@ -136,18 +127,6 @@ footer {
 .modal p .green {
   color: rgb(1, 156, 47);
 }
-=======
-
-.modal p span {
-  display: inline-block;
-}
-
-.modal p .pink { color: rgb(255, 107, 132); }
-.modal p .blue { color: rgb(67, 171, 211); }
-.modal p .yellow { color: rgb(244, 192, 36); }
-.modal p .green { color: rgb(1, 156, 47); }
-
->>>>>>> ab6d98fa28196e296236e927b65c63fb88d52b30
 .close-btn {
   background: #0095ff;
   color: white;
@@ -575,18 +554,9 @@ footer {
 }
 
 /* game */
-<<<<<<< HEAD
 .container.game {
   background-color: #ffffff9e;
 }
-=======
-.container.game{ background-color: #ffffff9e;
-         width : 1000px;  
-         height : 700px;
- }
-
-
->>>>>>> ab6d98fa28196e296236e927b65c63fb88d52b30
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
 
@@ -614,12 +584,8 @@ body {
 
 .timer-wrap {
   position: fixed;
-<<<<<<< HEAD
   /* container 왼쪽 바깥, 중간쯤에 오도록 조정 */
   left: 180px; /* ← 이 값을 더 크게 하면 오른쪽으로 이동 */
-=======
-  left: 180px;   
->>>>>>> ab6d98fa28196e296236e927b65c63fb88d52b30
   top: 25%;
   transform: translateY(-50%);
   display: flex;
