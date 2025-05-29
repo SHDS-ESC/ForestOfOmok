@@ -11,7 +11,6 @@ import javax.sql.DataSource;
 
 import model.User;
 
-
 public class UserDAO {
 	
 	private PreparedStatement pstmt = null;
