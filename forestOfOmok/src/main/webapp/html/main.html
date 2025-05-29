@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -25,7 +26,7 @@
 		id="moveGameBtn" />
 	<!-- 임시 버튼 -->
 	<!-- 임시 버튼 -->
-	<!-- 로딩 화면 -->
+  <!-- 로딩 화면 -->
   <div id="loadingScreen" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#fff; z-index:9999; display:flex; align-items:center; justify-content:center;">
     <p style="font-size: 1.5rem;">로딩 중... 🍀</p>
   </div>
@@ -33,7 +34,7 @@
   <div id="mainApp" style="display: none;">
     <!-- 여기에 기존의 전체 컨텐츠 넣기 -->
     <!-- 브금 제어 버튼, 임시 버튼, container 등 전부 이 안에 들어가야 함 -->
-  
+
 	<div class="container main">
 		<header>
 			<span></span>
@@ -66,17 +67,7 @@
 					<!-- 여기부터 지원 작성 -->
 					<div class="rankTitle"></div>
 					<ul class="rankList">
-						<li class="rankItem"><span class="rankProfileName"> 1등
-						</span> <span> <img class="rankProfile" src="../img/img-rank1.png" />
-						</span> <span class="rankProfileName"> 닉네임 </span></li>
-
-						<li class="rankItem"><span class="rankProfileName"> 2등
-						</span> <span> <img class="rankProfile" src="../img/img-rank1.png" />
-						</span> <span class="rankProfileName"> 닉네임 </span></li>
-
-						<li class="rankItem"><span class="rankProfileName"> 3등
-						</span> <span> <img class="rankProfile" src="../img/img-rank1.png" />
-						</span> <span class="rankProfileName"> 닉네임 </span></li>
+						
 					</ul>
 				</div>
 				<div class="createRommBtn"></div>
@@ -169,7 +160,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- 방 생성 팝업 -->
+    	<!-- 방 생성 팝업 -->
 <div id="createRoomModal" style="
   display: none;
   position: fixed;
@@ -194,13 +185,10 @@
     <button id="cancelCreateRoom">취소</button>
   </div>
 </div>
-	
 	<!-- 모달창 -->
 	<div id="modalComponent"></div>
-	</div>
 	<script>
-	
-	$(window).on("load", function () {
+$(window).on("load", function () {
 		  // 로딩 화면 숨기기
 		  $("#loadingScreen").fadeOut(500, function () {
 		    $(this).remove(); // 완전히 제거 (선택사항)
@@ -209,16 +197,16 @@
 		  // 본문 화면 보이기
 		  $("#mainApp").fadeIn(300);
 		});
-    
+
       $(function () {
         let test = false; // 임시
         
         // api 템플릿
-    	let connectApi = function(url, method, data, callback) {
+    	let connectApi = function(url, method, callback) {
     	$.ajax({
         	url: url,
         	method: method,
-        	data: data,
+        	data: {},
         	dataType: "json",
         	success: function(res) {
             	console.log(res);
@@ -235,15 +223,13 @@
         $("#modalComponent").load("/forestOfOmok/html/modal.html");
 
         // 방 만들기
-       $(".createRommBtn").click(function () {
+        $(".createRommBtn").click(function () {
           alert("방만들기");
           test = true; // 테스트로 방만들기 true
           $(".emptyRoom").hide(); // 방 없을때 메시지 숨김
           $(".roomList").show(); // 방 있을때 컴포넌트 display: none -> show 노출
-          
-          
 
-          let title = prompt("방 타이틀을 입력하세요");
+             let title = prompt("방 타이틀을 입력하세요");
           let req = {
         		  title:title
           }
@@ -270,8 +256,7 @@
           }
           
         }); 
-        
-        
+
 
         // 방 들어가기
         // 동적으로 추가된 방
@@ -412,7 +397,7 @@
      
      
 
-        connectApi("http://localhost:8092/forestOfOmok/main/profile", "GET", {}, function(data) {
+        connectApi("http://localhost:8092/forestOfOmok/main/profile", "GET", function(data) {
             if (data) {
                 // 성공했을 때 처리
             console.log("받은 데이터:", data);
@@ -425,7 +410,26 @@
                 // 실패했을 때 처리
             console.log("데이터 로딩 실패");
             }
-        });  
+        });      
+        
+        connectApi("http://localhost:8092/forestOfOmok/main/rank", "GET", function(data) {
+        	  if (data) {
+        	    console.log("받은 데이터:", data);
+
+        	    // rank 배열을 반복
+        	    data.rank.forEach(function(item) {
+        	      $(".rankList").append(
+        	        '<li class="rankItem">' +
+        	          '<span class="rankProfileName">' + item.rank + '등</span>' +
+        	          '<span><img class="rankProfile" src="' + item.profile + '" /></span>' +
+        	          '<span class="rankProfileName">' + item.name + '</span>' +
+        	        '</li>'
+        	      );
+        	    });
+        	  } else {
+        	    console.log("데이터 로딩 실패");
+        	  }
+        	});
         
         connectApi("http://localhost:8092/forestOfOmok/main/getRoomList", "GET", {}, function(data) {
         	if (data) {
@@ -448,6 +452,53 @@
             console.log("데이터 로딩 실패");
             }
         });
+     });
+
+        
+        connectApi("http://localhost:8092/forestOfOmok/main/history", "GET", function (data) {
+        	  if (data && data.history) {
+        	    console.log("받은 데이터:", data);
+
+        	    data.history.forEach(function (item) {
+        	      const isMeLeft = item.winnerColor === "black";
+
+        	      const leftHTML = `
+        	        <span class="historyStoneInfoMe">${isMeLeft ? "승" : "패"}</span>
+        	        <img class="historyProfileMe" src="${item.imgPath}" />
+        	        <span class="historyNickNameMe">${isMeLeft ? item.winnerName : item.loserName}</span>
+        	      `;
+
+        	      const rightHTML = `
+        	        <span class="historyNickNameYou">${isMeLeft ? item.loserName : item.winnerName}</span>
+        	        <img class="historyProfileYou" src="${item.imgPath}" />
+        	        <span class="historyStoneInfoYou">${isMeLeft ? "패" : "승"}</span>
+        	      `;
+
+        	      const html = `
+        	        <li>
+        	          <div class="historyItem">
+        	            <div class="historyItemL">
+        	              ${leftHTML}
+        	            </div>
+        	            <div class="historyItemR">
+        	              ${rightHTML}
+        	            </div>
+        	          </div>
+        	          <div class="historyPannel">
+        	            <div class="historyTime">시간 : ${item.time}</div>
+        	            <div class="historyTurn">턴수 : ${item.turnCount}</div>
+        	          </div>
+        	        </li>
+        	      `;
+
+        	      $(".historyList").append(html);
+        	    });
+        	  } else {
+        	    console.log("데이터 로딩 실패");
+        	  }
+        	});
+        
+        
      })
     </script>
 </body>
