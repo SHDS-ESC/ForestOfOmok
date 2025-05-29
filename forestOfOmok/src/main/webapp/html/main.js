@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    runApp();
+    // runApp();
     });
 
  var turn = 0; // turn을 전역으로 선언
@@ -59,7 +59,6 @@ const PLAYERS = {
     BLACK: { id: 1, name: "흑", label: "흑 player" },
     WHITE: { id: 2, name: "백", label: "백 player" }
 };
-
 // 현재 플레이어를 구하는 함수
 // getCurrentPlayer 함수는 turn이 0일 때 흑(1번) 반환
 function getCurrentPlayer(turn) {
@@ -224,7 +223,20 @@ function isOverline(row, column, player) {
     cell = event.target.cellProperties;
 
     // ...ajax 생략...
-
+    $.ajax({
+	  url: '/forestOfOmok/omokTurn',
+	  type: 'POST',
+	  contentType: 'application/json; charset=UTF-8',
+	  data: JSON.stringify({ row: cell.row, col: cell.column}),
+	  success: function(response) {
+		console.log("서버 응답 : ", response);
+		alert("서버 메세지 : " + response.msg);
+	  },
+      error: function(xhr, status, error) {
+	    console.log(xhr, status, error);
+  	  }
+	});
+	
     const currentPlayer = getCurrentPlayer(turn);
     let forbidden = isForbidden(cell.row, cell.column, currentPlayer.id);
     if (forbidden) {
@@ -373,7 +385,6 @@ $(function () {
   // modal.html 불러오기
   $("#modalComponent").load("modal.html");
 });
-
 // 메뉴 버튼 클릭 시 드롭다운 토글
 document.getElementById("menuBtn").onclick = function(e) {
   e.stopPropagation();
@@ -388,7 +399,6 @@ document.addEventListener("click", function(e) {
 document.getElementById("menuDropdown").onclick = function(e) {
   e.stopPropagation();
 };
-
 // 항복 버튼 기존 로직 연결
 document.getElementById("resignBtn").onclick = function() {
   document.getElementById("resignQuestion").style.display = "block";
@@ -493,10 +503,63 @@ function showWinModal(msg) {
         setBoard();
         setItems();
         setTimer();
-        updateCrown(1); // 흑(선공)에게 왕관
+        updateCrown(1); 
     };
 
     exitBtn.onclick = function () {
         location.reload();
     };
 }
+
+// 레디 상태 변수
+let ready1 = false, ready2 = false;
+
+// 레디 버튼 이벤트
+document.getElementById("readyBtn1").onclick = function() {
+    ready1 = true;
+    document.getElementById("readyBtn1").disabled = true;
+    updateReadyStatus();
+    checkReady();
+};
+document.getElementById("readyBtn2").onclick = function() {
+    ready2 = true;
+    document.getElementById("readyBtn2").disabled = true;
+    updateReadyStatus();
+    checkReady();
+};
+
+function updateReadyStatus() {
+    let msg = "";
+    msg += ready1 ? "1P 준비 완료! " : "1P 대기중... ";
+    msg += ready2 ? "2P 준비 완료!" : "2P 대기중...";
+    document.getElementById("readyStatus").textContent = msg;
+}
+
+function checkReady() {
+    if (ready1 && ready2) {
+        hideReadyModal();
+        runApp();
+    }
+}
+
+function showReadyModal() {
+    document.getElementById("readyModal").style.display = "block";
+    // 게임 UI, 채팅, 메뉴 등 숨기기
+    document.querySelectorAll(
+      ".container.game, #chatbox, .timer-wrap, #menuBtn, #menuDropdown"
+    ).forEach(el => el.style.display = "none");
+    // 배경만 남음
+}
+
+function hideReadyModal() {
+    document.getElementById("readyModal").style.display = "none";
+    // 게임 UI, 채팅, 메뉴 등 다시 보이기
+    document.querySelectorAll(
+      ".container.game, #chatbox, .timer-wrap, #menuBtn, #menuDropdown"
+    ).forEach(el => el.style.display = "");
+}
+
+// 페이지 로드시 레디 모달 띄우기
+window.onload = function() {
+    showReadyModal();
+};
