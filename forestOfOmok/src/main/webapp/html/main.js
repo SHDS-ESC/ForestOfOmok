@@ -265,14 +265,22 @@ function countOpenN(row, column, player, n) {
 
     setTimer = () => {
     let maxTime = 30; // 30초부터 0초로 떨어지도록 변경 
+    const timerBox = document.querySelector('.timer-box');
     document.getElementById("timer").innerText = `0:${maxTime < 10 ? '0' : ''}${maxTime}`;
     timer = setInterval(() => {
         maxTime--;
         globalTime++;
         document.getElementById("timer").innerText = `0:${maxTime < 10 ? '0' : ''}${maxTime}`;
+        // 흔들림 효과 추가
+        if (maxTime <= 5) {
+            timerBox.classList.add('shake');
+        } else {
+            timerBox.classList.remove('shake');
+        }
         if (maxTime <= 0) {
-        clearInterval(timer);
-        autoPlaceStone(); // 0초가 되면 autoPlaceStone()함수로로 돌을 랜덤한 위치에 착수시킴
+            clearInterval(timer);
+            timerBox.classList.remove('shake'); // 타이머 끝나면 흔들림 제거
+            autoPlaceStone();
         }
     }, 1000);
     };
@@ -366,4 +374,17 @@ function showMessage(result, winnerObj) { // 승리
             elemMsg.removeAttribute("class");
         }, 1500);
     }
+}
+
+function updateTimer(timeLeft) {
+  const timerBox = document.querySelector('.timer-box');
+  const timerText = document.getElementById('timer');
+  timerText.innerText = `0:${timeLeft < 10 ? '0' : ''}${timeLeft}`;
+  if (timeLeft <= 5) {
+    timerBox.classList.add('shake');
+    timerText.classList.add('red-time');
+  } else {
+    timerBox.classList.remove('shake');
+    timerText.classList.remove('red-time');
+  }
 }
