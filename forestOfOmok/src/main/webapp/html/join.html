@@ -10,7 +10,7 @@
     <link rel="icon" href="/forestOfOmok/img/sec05_chara02.png" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <style>
-      .loginBox {
+      .signUpBox {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -24,7 +24,7 @@
         border: 2px solid #2ba7ff;
       }
 
-      .loginBox h2 {
+      .signUpBox h2 {
         margin: 0 0 30px;
         padding: 0;
         color: #0095ff;
@@ -32,11 +32,11 @@
         font-size: 24px;
       }
 
-      .loginBox .userBox {
+      .signUpBox .userBox {
         position: relative;
       }
 
-      .loginBox .userBox input {
+      .signUpBox .userBox input {
         width: 100%;
         padding: 10px 0;
         font-size: 16px;
@@ -48,7 +48,7 @@
         background: transparent;
       }
 
-      .loginBox .userBox label {
+      .signUpBox .userBox label {
         position: absolute;
         top: 0;
         left: 0;
@@ -59,15 +59,15 @@
         transition: 0.5s;
       }
 
-      .loginBox .userBox input:focus ~ label,
-      .loginBox .userBox input:valid ~ label {
+      .signUpBox .userBox input:focus ~ label,
+      .signUpBox .userBox input:valid ~ label {
         top: -20px;
         left: 0;
         color: #0095ff;
         font-size: 12px;
       }
 
-      .loginBox form a {
+      .signUpBox form a {
         position: relative;
         display: inline-block;
         padding: 10px 20px;
@@ -157,7 +157,7 @@
     <div class="container login">
       <header></header>
       <div class="content">
-        <div class="loginBox">
+        <div class="signUpBox">
           <h2>회원가입</h2>
           <div class="profileImg">
             <div class="circle" id="profileCircle"></div>
@@ -270,10 +270,7 @@
     alert("🎉 회원가입이 완료되었습니다!");
      }
   
-  function selectImage(imgElement) {
-	  const imgId = imgElement.getAttribute("data-img-id");
-	  document.getElementById("imgId").value = imgId; 
-	}
+
 
 </script>
 
