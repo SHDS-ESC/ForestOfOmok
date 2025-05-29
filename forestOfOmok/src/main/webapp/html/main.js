@@ -1,7 +1,51 @@
 document.addEventListener("DOMContentLoaded", () => {
+    connectWebSocket();
     runApp();
+});
+
+function connectWebSocket() {
+    var ws = new WebSocket("ws://localhost:8092/forestOfOmok/ws");
+
+    ws.onopen = function() {
+        console.log("웹소켓 연결됨");
+    };
+
+    ws.onmessage = function(event) {
+        console.log("서버 응답: " + event.data);
+    };
+
+    ws.onclose = function() {
+        console.log("웹소켓 연결 종료");
+    };
+
+    ws.onerror = function(error) {
+        console.log("에러 발생: " + error);
+    };
+
+    // 채팅 보내기
+    document.querySelector(".chat-send-btn").onclick = sendChatMsg;
+    // 엔터키 이벤트
+    document.querySelector(".chat-input").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            sendChatMsg();
+        }
     });
 
+    function sendChatMsg() {
+        if (ws.readyState === WebSocket.OPEN) {
+            const params = new URLSearchParams(location.search);
+            const gameId = params.get('gameId');
+            let data = JSON.stringify({ gameId: gameId, message: document.querySelector(".chat-input").value });
+            ws.send(data);
+            console.log("msg 전송 " + data);
+            document.querySelector(".chat-input").value = ""; // 입력창 비우기
+        } else {
+            console.log("웹소켓이 연결되어 있지 않습니다.");
+        }
+    }
+}
+	
     setConf = () => {
     const cellWidth = 35,
         elemInfo = document.getElementById("info"),
@@ -220,16 +264,17 @@ function countOpenN(row, column, player, n) {
 
  isItemClicked = (event) => {
     cell = event.target.cellProperties;
-    
-    // url의 쿼리스트링 roomId 추출
+
+    /*
+    // url의 쿼리스트링 gameId 추출
     const params = new URLSearchParams(location.search);
-	const roomId = params.get('roomId');
+	const gameId = params.get('gameId');
     
 	$.ajax({
 	  url: '/forestOfOmok/omokTurn',
 	  type: 'POST',
 	  contentType: 'application/json; charset=UTF-8',
-	  data: JSON.stringify({ roomId: roomId, row: cell.row, col: cell.column}),
+	  data: JSON.stringify({ gameId: gameId, row: cell.row, col: cell.column}),
 	  success: function(response) {
 		console.log("서버 응답 : ", response);
 		
@@ -245,6 +290,7 @@ function countOpenN(row, column, player, n) {
 	    console.log(xhr, status, error);
   	  }
 	});
+	*/
     
     // 현재 플레이어 객체를 가져옴
     const currentPlayer = getCurrentPlayer(turn);
