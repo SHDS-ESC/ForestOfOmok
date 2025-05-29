@@ -10,7 +10,6 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import model.User;
-import model.UserImage;
 
 public class UserDAO {
 	
