@@ -55,13 +55,13 @@ public class UserDAO {
 	}
 	
 	//아이디 중복체크
-	public boolean isUserIdExists(String userId) {
+	public boolean isUserIdExists(String name) {
 	    boolean exists = false;
 	    try {
 	        con = dataFactory.getConnection();
-	        String query = "SELECT user_id FROM users WHERE user_id = ?";
+	        String query = "SELECT name FROM users WHERE name = ?";
 	        pstmt = con.prepareStatement(query);
-	        pstmt.setString(1, userId);
+	        pstmt.setString(1, name);
 	        ResultSet rs = pstmt.executeQuery();
 	        exists = rs.next(); // 있으면 true
 	        System.out.println(exists+ "result값");
@@ -101,18 +101,17 @@ public class UserDAO {
  
 
     
-    // 4. 아이디 찾기 (이름 + 이메일 기반)
-    public String findUserId(String name, String email) {
-        String userId = null;
+    // 4. 아이디 찾기 (이메일 기반)
+    public String findNameByEmail(String email) {
+        String name = null;
         try {
             con = dataFactory.getConnection();
-            String query = "SELECT user_id FROM users WHERE name = ? AND email = ?";
+            String query = "SELECT name FROM users WHERE email = ?";
             pstmt = con.prepareStatement(query);
-            pstmt.setString(1, name);
-            pstmt.setString(2, email);
+            pstmt.setString(1, email);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
-                userId = rs.getString("user_id");
+                name = rs.getString("name");
             }
             rs.close();
         } catch (Exception e) {
@@ -120,17 +119,18 @@ public class UserDAO {
         } finally {
             try { if (pstmt != null) pstmt.close(); if (con != null) con.close(); } catch (Exception e) {}
         }
-        return userId;
+        return name;
     }
+
     
     // 5. 비밀번호 찾기 (아이디 + 이름 + 이메일 기반)
-    public String findPassword(String userId, String email) {
+    public String findPassword(String name, String email) {
         String password = null;
         try {
             con = dataFactory.getConnection();
-            String query = "SELECT pwd FROM users WHERE user_id = ? AND email = ?";
+            String query = "SELECT pwd FROM users WHERE name = ? AND email = ?";
             pstmt = con.prepareStatement(query);
-            pstmt.setString(1, userId);
+            pstmt.setString(1, name);
             pstmt.setString(2, email);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
