@@ -57,17 +57,7 @@
 					<!-- 여기부터 지원 작성 -->
 					<div class="rankTitle"></div>
 					<ul class="rankList">
-						<li class="rankItem"><span class="rankProfileName"> 1등
-						</span> <span> <img class="rankProfile" src="../img/img-rank1.png" />
-						</span> <span class="rankProfileName"> 닉네임 </span></li>
-
-						<li class="rankItem"><span class="rankProfileName"> 2등
-						</span> <span> <img class="rankProfile" src="../img/img-rank1.png" />
-						</span> <span class="rankProfileName"> 닉네임 </span></li>
-
-						<li class="rankItem"><span class="rankProfileName"> 3등
-						</span> <span> <img class="rankProfile" src="../img/img-rank1.png" />
-						</span> <span class="rankProfileName"> 닉네임 </span></li>
+						
 					</ul>
 				</div>
 				<div class="createRommBtn"></div>
@@ -354,6 +344,70 @@
             console.log("데이터 로딩 실패");
             }
         });      
+        
+        connectApi("http://localhost:8092/forestOfOmok/main/rank", "GET", function(data) {
+        	  if (data) {
+        	    console.log("받은 데이터:", data);
+
+        	    // rank 배열을 반복
+        	    data.rank.forEach(function(item) {
+        	      $(".rankList").append(
+        	        '<li class="rankItem">' +
+        	          '<span class="rankProfileName">' + item.rank + '등</span>' +
+        	          '<span><img class="rankProfile" src="' + item.profile + '" /></span>' +
+        	          '<span class="rankProfileName">' + item.name + '</span>' +
+        	        '</li>'
+        	      );
+        	    });
+        	  } else {
+        	    console.log("데이터 로딩 실패");
+        	  }
+        	});
+        
+        connectApi("http://localhost:8092/forestOfOmok/main/history", "GET", function (data) {
+        	  if (data && data.history) {
+        	    console.log("받은 데이터:", data);
+
+        	    data.history.forEach(function (item) {
+        	      const isMeLeft = item.winnerColor === "black";
+
+        	      const leftHTML = `
+        	        <span class="historyStoneInfoMe">${isMeLeft ? "승" : "패"}</span>
+        	        <img class="historyProfileMe" src="${item.imgPath}" />
+        	        <span class="historyNickNameMe">${isMeLeft ? item.winnerName : item.loserName}</span>
+        	      `;
+
+        	      const rightHTML = `
+        	        <span class="historyNickNameYou">${isMeLeft ? item.loserName : item.winnerName}</span>
+        	        <img class="historyProfileYou" src="${item.imgPath}" />
+        	        <span class="historyStoneInfoYou">${isMeLeft ? "패" : "승"}</span>
+        	      `;
+
+        	      const html = `
+        	        <li>
+        	          <div class="historyItem">
+        	            <div class="historyItemL">
+        	              ${leftHTML}
+        	            </div>
+        	            <div class="historyItemR">
+        	              ${rightHTML}
+        	            </div>
+        	          </div>
+        	          <div class="historyPannel">
+        	            <div class="historyTime">시간 : ${item.time}</div>
+        	            <div class="historyTurn">턴수 : ${item.turnCount}</div>
+        	          </div>
+        	        </li>
+        	      `;
+
+        	      $(".historyList").append(html);
+        	    });
+        	  } else {
+        	    console.log("데이터 로딩 실패");
+        	  }
+        	});
+        
+        
      })
     </script>
 </body>
