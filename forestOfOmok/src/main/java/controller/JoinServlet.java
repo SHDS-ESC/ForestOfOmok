@@ -30,8 +30,6 @@ public class JoinServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		request.setCharacterEncoding("UTF-8");
 
-		
-
 		System.out.println("result");
 	
 		String name = request.getParameter("name");
@@ -57,18 +55,20 @@ public class JoinServlet extends HttpServlet {
 		// DAO 호출
 		UserDAO dao = new UserDAO();
 		int result = dao.insertUser(user);
-
+		
+		System.out.println("결과" + result);
 
 		if (result > 0) {
 			// 회원가입 성공 시 login.html로 포워드
 			HttpSession session = request.getSession();
 			session.setAttribute("userId", user.getUserId());
-			 response.sendRedirect(request.getContextPath() + "/login");
+			response.sendRedirect(request.getContextPath() + "/login");
 
 
 		} else {
 			// 실패 시 다시 join.html로 포워드
 			request.setAttribute("error", "회원가입 실패. 다시 시도해주세요.");
+			System.out.println(name);
 			request.getRequestDispatcher("/html/join.html").forward(request, response);
 		}
 	}
