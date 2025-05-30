@@ -20,6 +20,7 @@
         background: transparent;
         border: none;
       "
+      type="button"
     >
       <img
         src="/forestOfOmok/img/menu.png"
@@ -27,6 +28,15 @@
         style="width: 32px; height: 32px"
       />
     </button>
+    <!-- 메뉴 드롭다운 -->
+    <div id="menuDropdown" style="display:none; position:fixed; top:60px; left:18px; z-index:2002; background:#fff; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.15); padding:8px 0;">
+      <button id="resignBtn" style="display:block; width:100%; background:none; border:none; padding:10px 24px; text-align:left; cursor:pointer;">
+        <img src="img/flag.png" alt="항복" style="width: 24px; height: 24px; vertical-align:middle; margin-right:8px;" />항복
+      </button>
+      <button id="undoBtn" style="display:block; width:100%; background:none; border:none; padding:10px 24px; text-align:left; cursor:pointer;">
+        <img src="img/undo.png" alt="무르기" style="width: 24px; height: 24px; vertical-align:middle; margin-right:8px;" />무르기
+      </button>
+    </div>
     <div id="background"></div>
 
     <!-- 브금 제어 버튼 -->
@@ -55,10 +65,7 @@
     </button>
 
     <!-- 누구 차례인지 표시 -->
-    <div id="info">1st player's turn</div>
-
-    <!-- 승리 메시지 표시 -->
-    <div id="msg"></div>
+    
 
     <!-- 타이머 -->
     <div class="timer-wrap">
@@ -78,27 +85,23 @@
         transform: translate(-50%, -50%);
       "
     >
-      <!-- 왼쪽(1번) 플레이어 정보 -->
+      <!-- 왼쪽(1번) 플레이어 info -->
       <div class="player-info player-left">
-        <img
-          src="/forestOfOmok/img/player1.png"
-          alt="플레이어1"
-          class="player-photo"
-        />
+        <img src="img/leaf.png" alt="왕관" class="turn-crown" id="player1-crown" style="display:none;" />
+        <span class="turn-label" id="player1-turn-label"></span>
+        <img src="img/player1.png" alt="플레이어1" class="player-photo" />
         <div class="player-nickname">SSud</div>
         <div class="player-record">10승 3패</div>
-        <div class="player-stone player-stone-white" title="백돌"></div>
+        <div class="player-stone player-stone-black" title="흑돌"></div>
       </div>
-      <!-- 오른쪽(2번) 플레이어 정보 -->
+      <!-- 오른쪽(2번) 플레이어 info -->
       <div class="player-info player-right">
-        <img
-          src="/forestOfOmok/img/player2.png"
-          alt="플레이어2"
-          class="player-photo"
-        /> 	
+        <img src="img/leaf.png" alt="왕관" class="turn-crown" id="player2-crown" style="display:none;" />
+        <span class="turn-label" id="player2-turn-label"></span>
+        <img src="img/player2.png" alt="플레이어2" class="player-photo" />
         <div class="player-nickname">sngsngUDON</div>
         <div class="player-record">7승 8패</div>
-        <div class="player-stone player-stone-black" title="흑돌"></div>
+        <div class="player-stone player-stone-white" title="백돌"></div>
       </div>
       <header></header>
     </div>
@@ -134,6 +137,91 @@
         </div>
         <button id="resignYes" style="margin-right: 20px">예</button>
         <button id="resignNo">아니오</button>
+      </div>
+    </div>
+
+    <!-- 무르기 요청 모달 -->
+    <div
+      id="undoRequestModal"
+      style="
+        display: none;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.18);
+        z-index: 3000;
+      "
+    >
+      <div
+        style="
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: #fff;
+          border-radius: 16px;
+          box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
+          padding: 36px 48px 28px 48px;
+          text-align: center;
+        "
+      >
+        <div style="margin-bottom: 20px; font-size: 1.2em">
+          상대방에게 무르기를 요청하시겠습니까?
+        </div>
+        <button id="undoRequestYes" style="margin-right: 20px">예</button>
+        <button id="undoRequestNo">아니오</button>
+      </div>
+    </div>
+
+    <!-- 대기 모달 추가 -->
+    <div
+      id="undoWaitingModal"
+      style="
+        display: none;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.18);
+        z-index: 3001;
+      "
+    >
+      <div
+        style="
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: #fff;
+          border-radius: 16px;
+          box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
+          padding: 36px 48px 28px 48px;
+          text-align: center;
+        "
+      >
+        <div id="undoWaitingMsg" style="margin-bottom: 20px; font-size: 1.2em">
+          상대방이 무르기 요청을<br />수락할 때까지 대기중...
+        </div>
+        <div
+          id="undoWaitingTimer"
+          style="font-size: 1.1em; color: #0095ff;"
+        >
+          8
+        </div>
+        <button id="undoWaitingCloseBtn" style="display:none; margin-top:18px;">닫기</button>
+      </div>
+    </div>
+
+    <!-- 승리 모달 -->
+    <div id="winModal" style="display:none;">
+      <div class="win-modal-inner">
+        <div id="winModalMsg"></div>
+        <button id="rematchBtn" style="display:none;">한판 더!</button>
+        <button id="exitBtn" style="display:none;">나가기</button>
+        <div id="rematchInfo" style="display:none;"></div>
       </div>
     </div>
 
@@ -206,5 +294,94 @@
         <button class="chat-send-btn">전송</button>
       </div>
     </div>
+
+    <!-- 금수 알림 모달 -->
+    <div id="alertModal" class="alert-modal">
+      <div class="alert-modal-inner">
+        <div id="alertMsg"></div>
+        <button id="alertCloseBtn">확인</button>
+      </div>
+    </div>
+
+    <!-- 왼쪽 아래에 오목 규칙 & 꿀팁 슬라이드 박스 추가 -->
+    <div class="omokRuleBox omokRuleBox-left">
+      <div class="omokRuleBox-inner">
+        <button class="omokRuleBox-nav omokRuleBox-prev" aria-label="이전" onclick="showRuleSlide(-1)">&#8592;</button>
+        <div class="omokRuleBox-slide omokRuleBox-slide-active" id="rule-slide-0">
+          <div class="omokRuleTitle">오목 규칙 🍀</div>
+          <ul class="omokRuleList">
+            <li><strong>[3-3 금수]</strong> : 흑은 한 수로 열린 3이 두 개 이상 만들어지면 반칙입니다.</li>
+            <li><strong>[4-4 금수]</strong> : 흑은 한 수로 열린 4가 두 개 이상 만들어지면 반칙입니다.</li>
+            <li><strong>[6목 금지]</strong> : 흑은 6개 이상 연속으로 놓아도 승리가 아닙니다. (백은 6목 이상도 승리)</li>
+            <li><strong>5목</strong> : 5개를 연속으로 먼저 놓는 사람이 승리합니다.</li>
+            <li><strong>백은 금수 없음</strong> : 백은 금수 규칙이 적용되지 않습니다.</li>
+          </ul>
+        </div>
+        <div class="omokRuleBox-slide" id="rule-slide-1">
+          <div class="omokTipsTitle">오목 꿀팁 ✨</div>
+          <ul class="omokTipsList">
+            <li>1. 중앙부터 두면 유리해요!</li>
+            <li>2️. 채팅 기능을 통해 상대방과 소통할 수 있어요. 게임 중간에 대화를 나눠보세요!</li>
+            <li>3️. 승부가 끝나면 "수고하셨습니다!" 한마디씩 잊지 마세요 😊</li>
+            <li>4️. 금수 규칙을 잘 활용하면 역전할 수 있어요. 끝까지 포기하지 마세요😎</li>
+            <li>5️. 4목을 만들면 상대방이 막기 어려운 위치에 놓는 것이 좋습니다.</li>
+            <li>6️. 게임 중간에 무르기를 요청할 수 있어요. (게임당 1번) 상대방이 수락하면 이전 수로 돌아갑니다.</li>
+          </ul>
+        </div>
+        <button class="omokRuleBox-nav omokRuleBox-next" aria-label="다음" onclick="showRuleSlide(1)">&#8594;</button>
+      </div>
+      <div class="omokRuleBox-dots">
+        <span class="omokRuleBox-dot omokRuleBox-dot-active" onclick="goRuleSlide(0)"></span>
+        <span class="omokRuleBox-dot" onclick="goRuleSlide(1)"></span>
+      </div>
+    </div>
+    <!-- Ready Modal -->
+<div id="readyModal" style="
+  display: block;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.45);
+  z-index: 9999;
+">
+  <div style="
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+    padding: 40px 60px;
+    text-align: center;
+  ">
+    <div style="font-size:1.3em; margin-bottom:18px;">플레이어 준비</div>
+    <button id="readyBtn1" style="margin: 0 20px;">1P 레디</button>
+    <button id="readyBtn2" style="margin: 0 20px;">2P 레디</button>
+    <div id="readyStatus" style="margin-top:18px; color:#0095ff;"></div>
+  </div>
+</div>
+    <script>
+      // 슬라이드 인덱스
+      let ruleSlideIdx = 0;
+      function showRuleSlide(dir) {
+        const slides = document.querySelectorAll('.omokRuleBox-slide');
+        const dots = document.querySelectorAll('.omokRuleBox-dot');
+        slides[ruleSlideIdx].classList.remove('omokRuleBox-slide-active');
+        dots[ruleSlideIdx].classList.remove('omokRuleBox-dot-active');
+        ruleSlideIdx = (ruleSlideIdx + dir + slides.length) % slides.length;
+        slides[ruleSlideIdx].classList.add('omokRuleBox-slide-active');
+        dots[ruleSlideIdx].classList.add('omokRuleBox-dot-active');
+      }
+      function goRuleSlide(idx) {
+        const slides = document.querySelectorAll('.omokRuleBox-slide');
+        const dots = document.querySelectorAll('.omokRuleBox-dot');
+        slides[ruleSlideIdx].classList.remove('omokRuleBox-slide-active');
+        dots[ruleSlideIdx].classList.remove('omokRuleBox-dot-active');
+        ruleSlideIdx = idx;
+        slides[ruleSlideIdx].classList.add('omokRuleBox-slide-active');
+        dots[ruleSlideIdx].classList.add('omokRuleBox-dot-active');
+      }
+    </script>
+    <script src="html/main.js"></script>
   </body>
 </html>
