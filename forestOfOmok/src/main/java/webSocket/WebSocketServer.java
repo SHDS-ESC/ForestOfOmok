@@ -16,7 +16,7 @@ import javax.websocket.server.ServerEndpoint;
 
 import org.json.JSONObject;
 
-import model.UserDTO;
+import model.User;
 
 /*
  * @ServerEndPoint : @WebServlet과 달리 url 요청 접근 x
@@ -48,7 +48,7 @@ public class WebSocketServer {
             System.out.println("[WebSocketServer]웹소켓 연결 유저 ID: " + userId + " gameId: " + gameId);
             
             // user 객체 생성
-        	UserDTO user = new UserDTO();
+        	User user = new User();
             user.setUserId(userId);
             user.setGameId(gameId);
         	session.getUserProperties().put("user", user);
@@ -68,7 +68,7 @@ public class WebSocketServer {
 	@OnClose
 	public void onClose(Session session) {
 	    // 1. 세션에서 유저 객체 추출
-	    UserDTO user = (UserDTO) session.getUserProperties().get("user");
+	    User user = (User) session.getUserProperties().get("user");
 	    String gameId = null;
 	    
 	    if (user != null) {

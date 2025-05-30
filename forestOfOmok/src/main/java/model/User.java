@@ -3,9 +3,10 @@ package model;
 import lombok.Data;
 
 @Data
-public class UserDTO {
+public class User {
 	private String userId;
 	private String gameId;
+	private String pwd;
 	private String imgId;
 	private String name;
 	private String email;

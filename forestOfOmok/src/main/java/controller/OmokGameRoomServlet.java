@@ -32,7 +32,6 @@ public class OmokGameRoomServlet extends HttpServlet {
 		String userId = (String) session.getAttribute("userId");
 		String gameId = (String) session.getAttribute("gameId");
 //		response.sendRedirect(request.getContextPath() + "/html/game.html?gameId=" + gameId);
-//		response.sendRedirect(request.getContextPath() + "/jsp/game.jsp");
 		
 		request.setAttribute("userId", userId);
 		request.setAttribute("gameId", gameId);
