@@ -30,28 +30,23 @@ public class UserDAO {
 	
 	//1.회원가입
 	public int insertUser(User user) {
-		
+		int result = 0;
 		try {
 			con = dataFactory.getConnection();
-			//win,lose 0으로 처리
 			String query = "INSERT INTO users (user_id, img_id, pwd, name, email, win, lose) VALUES (USER_SEQ.NEXTVAL, ?, ?, ?, ?, 0, 0)";
 			pstmt = con.prepareStatement(query);
-			
-			
 			pstmt.setString(1, user.getImgId());
 			pstmt.setString(2, user.getPwd());
 			pstmt.setString(3, user.getName());
 			pstmt.setString(4, user.getEmail());
 			
-			pstmt.executeUpdate(); // INSERT 실행
-			pstmt.close();
-			con.close();
-			
+			result = pstmt.executeUpdate(); // 성공하면 1 반환
 		} catch(Exception e) {
 			e.printStackTrace();
+		} finally {
+			try { if (pstmt != null) pstmt.close(); if (con != null) con.close(); } catch (Exception e) {}
 		}
-		return 0;
-				
+		return result; // 성공 여부 반환
 	}
 	
 	//아이디 중복체크
@@ -93,7 +88,9 @@ public class UserDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try { if (pstmt != null) pstmt.close(); if (con != null) con.close(); } catch (Exception e) {}
+            try { if (pstmt != null) pstmt.close(); if (con != null) con.close(); } catch (Exception e) {
+            	e.printStackTrace();
+            }
         }
         return user;
     }
@@ -143,6 +140,26 @@ public class UserDAO {
             try { if (pstmt != null) pstmt.close(); if (con != null) con.close(); } catch (Exception e) {}
         }
         return password;
+    }
+    
+    // 6. 프로필 조희
+    public String getUserProfile(String user_id) {
+        String profileUrl = null;
+        try {
+            con = dataFactory.getConnection();
+            String query = "SELECT img_path FROM users u, image i WHERE i.img_id = u.img_id";
+            pstmt = con.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                profileUrl = rs.getString("img_path");
+            }
+            rs.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try { if (pstmt != null) pstmt.close(); if (con != null) con.close(); } catch (Exception e) {}
+        }
+        return profileUrl;
     }
 
 

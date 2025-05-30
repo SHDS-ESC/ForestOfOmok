@@ -14,6 +14,7 @@ import javax.naming.InitialContext;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import model.Game;
 import model.History;
 import model.Profile;
 import model.Rank;
@@ -84,7 +85,7 @@ public class UserDAO2Impl implements UserDAO2 {
 	        }
 	        rs.close();
 	        pstmt.close();
-
+	        
 	        // insert
 	        String insertSql = "INSERT INTO Game (game_id, owner_id, guest_id, title) VALUES (?, ?, ?, ?)";
 	        pstmt = con.prepareStatement(insertSql);
@@ -93,11 +94,11 @@ public class UserDAO2Impl implements UserDAO2 {
 	        pstmt.setInt(3, 1); // guestId 하드코딩
 	        pstmt.setString(4, game.getTitle());
 	        pstmt.executeUpdate();
-
+	        
 	        // 객체에 반영
 	        game.setGameId(generatedGameId);
 	        game.setGuestId(1);
-
+	        
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    } finally {
