@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -6,8 +7,13 @@
     <title>오목의 숲 🍀</title>
     <link rel="stylesheet" href="/forestOfOmok/css/reset.css" />
     <link rel="stylesheet" href="/forestOfOmok/css/style.css" />
+    <link rel="stylesheet" href="/forestOfOmok/game/style.css" />
     <link rel="icon" href="/forestOfOmok/img/sec05_chara02.png" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+      var userId = '${userId}';
+      var gameId = '${gameId}';
+    </script>
   </head>
   <body id="game">
     <button
@@ -353,6 +359,6 @@
         dots[ruleSlideIdx].classList.add('omokRuleBox-dot-active');
       }
     </script>
-    <script src="html/main.js"></script>
+    <script src="game/logic.js"></script>
   </body>
 </html>

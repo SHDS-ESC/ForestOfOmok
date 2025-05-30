@@ -15,5 +15,16 @@ public abstract class Board {
 		}
 		
 	};
+	
+	public Object getCell(int row, int col) {
+		return board[row][col];
+	}
+	
+	public int getRowCount() {
+		return row;
+	}
+	public int getColCount() {
+		return col;
+	}
 
 }
