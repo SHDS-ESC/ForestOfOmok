@@ -15,6 +15,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import dao.UserDAO2;
 import dao.UserDAO2Impl;
+import model.Game;
 import model.History;
 import model.Rank;
 @WebServlet("/main/*")
@@ -59,10 +60,10 @@ public class MainServlet extends HttpServlet {
 		    Game game = new Game();
 		    game.setOwnerId(Integer.parseInt(ownerId)); // 세션에서 가져온 값
 		    game.setTitle(title);
-
+		    System.out.println(title);
 		    UserDAO2 dao = new UserDAO2Impl();
 		    Game createdGame = dao.createRoom(game); // 시퀀스 적용된 Game 객체 반환
-
+		    System.out.println(createdGame);
 		    // JSON 응답
 		    JSONObject obj = new JSONObject();
 		    obj.put("gameId", createdGame.getGameId());
