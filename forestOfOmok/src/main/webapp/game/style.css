@@ -1,0 +1,12 @@
+.chat-message.mine {
+    text-align: right;
+    color: #1976d2;
+}
+.chat-message.other {
+    text-align: left;
+    color: #333;
+}
+.container.game {
+  background-color: #ffffff9e;
+  width : 1000px;
+}

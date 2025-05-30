@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>웹소켓 채팅 클라이언트</title>
+</head>
+<body>
+  <h2>웹소켓 채팅 테스트</h2>
+  <input type="text" id="msg" placeholder="메시지 입력">
+  <button onclick="sendMsg()">전송</button>
+  <div id="log" style="margin-top:20px; border:1px solid #ccc; padding:10px; height:200px; overflow:auto;"></div>
+
+  <script>
+    var ws = new WebSocket("ws://localhost:8092/forestOfOmok/server");
+    var log = document.getElementById("log");
+
+    ws.onopen = function() {
+      log.innerHTML += "<div><b>서버에 연결됨</b></div>";
+    };
+    ws.onmessage = function(event) {
+      log.innerHTML += "<div>서버: " + event.data + "</div>";
+      log.scrollTop = log.scrollHeight;
+    };
+    ws.onclose = function() {
+      log.innerHTML += "<div><b>서버 연결 종료</b></div>";
+    };
+    ws.onerror = function(error) {
+      log.innerHTML += "<div><b>에러 발생:</b> " + error + "</div>";
+    };
+
+    function sendMsg() {
+      var msg = document.getElementById("msg").value;
+      if (msg && ws.readyState === WebSocket.OPEN) {
+        ws.send(msg);
+        log.innerHTML += "<div>나: " + msg + "</div>";
+        document.getElementById("msg").value = "";
+        log.scrollTop = log.scrollHeight;
+      }
+    }
+  </script>
+</body>
+</html>

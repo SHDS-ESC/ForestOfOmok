@@ -16,14 +16,20 @@
       <div class="content">
         <div class = "logo"></div>
         
+        
         <div class="btnBox">
-            <div class = "enterBox" onclick = "location.href = '/forestOfOmok/html/login.html'"></div>
-            <div class = "noEnterBox" onclick = "location.href = '/forestOfOmok/html/main.html'"></div>
+        	<!-- 로그인 버튼 -->
+        	<form action = "/forestOfOmok/login" method = "post">
+        		<div class = "enterBox" onclick = "this.closest('form').submit();"></div>
+        	</form>
+        	
+        	<!-- 비회원 로그인 버튼 -->
+            <form action = "/forestOfOmok/login" method = "post">
+        		<div class = "noEnterBox" onclick = "this.closest('form').submit();"></div>
+        	</form>
         </div>
         
         </div>
-      </div>
-    </div>
-    
+      </div>    
   </body>
 </html>

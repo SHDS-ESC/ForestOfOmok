@@ -200,7 +200,7 @@ input[type="email"] {
 }
 
 .modal2 .hidden {
-    display: none;
+    display: none !important;
 }
 
 .modalContent {

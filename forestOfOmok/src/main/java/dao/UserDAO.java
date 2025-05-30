@@ -30,38 +30,33 @@ public class UserDAO {
 	
 	//1.회원가입
 	public int insertUser(User user) {
-		
+		int result = 0;
 		try {
 			con = dataFactory.getConnection();
-			//win,lose 0으로 처리
 			String query = "INSERT INTO users (user_id, img_id, pwd, name, email, win, lose) VALUES (USER_SEQ.NEXTVAL, ?, ?, ?, ?, 0, 0)";
 			pstmt = con.prepareStatement(query);
-			
-			
 			pstmt.setString(1, user.getImgId());
 			pstmt.setString(2, user.getPwd());
 			pstmt.setString(3, user.getName());
 			pstmt.setString(4, user.getEmail());
 			
-			pstmt.executeUpdate(); // INSERT 실행
-			pstmt.close();
-			con.close();
-			
+			result = pstmt.executeUpdate(); // 성공하면 1 반환
 		} catch(Exception e) {
 			e.printStackTrace();
+		} finally {
+			try { if (pstmt != null) pstmt.close(); if (con != null) con.close(); } catch (Exception e) {}
 		}
-		return 0;
-				
+		return result; // 성공 여부 반환
 	}
 	
 	//아이디 중복체크
-	public boolean isUserIdExists(String userId) {
+	public boolean isUserIdExists(String name) {
 	    boolean exists = false;
 	    try {
 	        con = dataFactory.getConnection();
-	        String query = "SELECT user_id FROM users WHERE user_id = ?";
+	        String query = "SELECT name FROM users WHERE name = ?";
 	        pstmt = con.prepareStatement(query);
-	        pstmt.setString(1, userId);
+	        pstmt.setString(1, name);
 	        ResultSet rs = pstmt.executeQuery();
 	        exists = rs.next(); // 있으면 true
 	        System.out.println(exists+ "result값");
@@ -93,7 +88,9 @@ public class UserDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try { if (pstmt != null) pstmt.close(); if (con != null) con.close(); } catch (Exception e) {}
+            try { if (pstmt != null) pstmt.close(); if (con != null) con.close(); } catch (Exception e) {
+            	e.printStackTrace();
+            }
         }
         return user;
     }
@@ -101,18 +98,17 @@ public class UserDAO {
  
 
     
-    // 4. 아이디 찾기 (이름 + 이메일 기반)
-    public String findUserId(String name, String email) {
-        String userId = null;
+    // 4. 아이디 찾기 (이메일 기반)
+    public String findNameByEmail(String email) {
+        String name = null;
         try {
             con = dataFactory.getConnection();
-            String query = "SELECT user_id FROM users WHERE name = ? AND email = ?";
+            String query = "SELECT name FROM users WHERE email = ?";
             pstmt = con.prepareStatement(query);
-            pstmt.setString(1, name);
-            pstmt.setString(2, email);
+            pstmt.setString(1, email);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
-                userId = rs.getString("user_id");
+                name = rs.getString("name");
             }
             rs.close();
         } catch (Exception e) {
@@ -120,17 +116,18 @@ public class UserDAO {
         } finally {
             try { if (pstmt != null) pstmt.close(); if (con != null) con.close(); } catch (Exception e) {}
         }
-        return userId;
+        return name;
     }
+
     
     // 5. 비밀번호 찾기 (아이디 + 이름 + 이메일 기반)
-    public String findPassword(String userId, String email) {
+    public String findPassword(String name, String email) {
         String password = null;
         try {
             con = dataFactory.getConnection();
-            String query = "SELECT pwd FROM users WHERE user_id = ? AND email = ?";
+            String query = "SELECT pwd FROM users WHERE name = ? AND email = ?";
             pstmt = con.prepareStatement(query);
-            pstmt.setString(1, userId);
+            pstmt.setString(1, name);
             pstmt.setString(2, email);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
@@ -143,6 +140,26 @@ public class UserDAO {
             try { if (pstmt != null) pstmt.close(); if (con != null) con.close(); } catch (Exception e) {}
         }
         return password;
+    }
+    
+    // 6. 프로필 조희
+    public String getUserProfile(String user_id) {
+        String profileUrl = null;
+        try {
+            con = dataFactory.getConnection();
+            String query = "SELECT img_path FROM users u, image i WHERE i.img_id = u.img_id";
+            pstmt = con.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                profileUrl = rs.getString("img_path");
+            }
+            rs.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try { if (pstmt != null) pstmt.close(); if (con != null) con.close(); } catch (Exception e) {}
+        }
+        return profileUrl;
     }
 
 

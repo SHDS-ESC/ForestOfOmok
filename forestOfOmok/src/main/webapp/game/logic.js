@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     connectWebSocket();
-    // runApp();
+//    runApp();
 });
 
 function connectWebSocket() {
@@ -12,6 +12,10 @@ function connectWebSocket() {
 
     ws.onmessage = function(event) {
         console.log("서버 응답: " + event.data);
+        
+        const data = JSON.parse(event.data); // { userId, gameId, message }
+    	// 내 userId와 비교해서 내 메시지/상대 메시지 구분
+	    appendChatMessage(data.message, data.userId === userId);
     };
 
     ws.onclose = function() {
@@ -34,9 +38,8 @@ function connectWebSocket() {
 
     function sendChatMsg() {
         if (ws.readyState === WebSocket.OPEN) {
-            const params = new URLSearchParams(location.search);
-            const gameId = params.get('gameId');
-            let data = JSON.stringify({ gameId: gameId, message: document.querySelector(".chat-input").value });
+			
+            let data = JSON.stringify({ userId: userId, gameId: gameId, message: document.querySelector(".chat-input").value });
             ws.send(data);
             console.log("msg 전송 " + data);
             document.querySelector(".chat-input").value = ""; // 입력창 비우기
@@ -44,7 +47,7 @@ function connectWebSocket() {
             console.log("웹소켓이 연결되어 있지 않습니다.");
         }
     }
-
+    
     function appendChatMessage(msg, isMine) {
 	    const chatMessages = document.querySelector('.chat-messages');
 	    const div = document.createElement('div');
@@ -55,11 +58,10 @@ function connectWebSocket() {
 	    chatMessages.scrollTop = chatMessages.scrollHeight;
 	}
 }
-	
-var turn = 0; // turn을 전역으로 선언
-var timer = null; // ★ timer를 전역으로 선언
-
-setConf = () => {
+	var turn = 0; // turn을 전역으로 선언
+    var timer = null; // ★ timer를 전역으로 선언
+    
+    setConf = () => {
     const cellWidth = 35,
         elemInfo = document.getElementById("info"),
         elemTimer = document.getElementById("timer"),
@@ -71,7 +73,6 @@ setConf = () => {
         boardWidth = m * cellWidth,
         map = [],
         cell;
-        // timer는 여기서 선언/초기화하지 않음
 
     return {
         cellWidth,
@@ -84,12 +85,10 @@ setConf = () => {
         boardWidth,
         map,
         cell
-        // timer는 반환하지 않음
+        };
     };
-};
 
-// turn 변수를 반드시 0으로 초기화(흑부터 시작)
-var {
+    var {
     cellWidth,
     elemInfo,
     elemTimer,
@@ -100,27 +99,25 @@ var {
     boardWidth,
     map,
     cell
-    // timer는 여기서도 받지 않음
-} = setConf();
+    } = setConf();
 
-runApp = () => {
-    turn = 0; // 반드시 흑(1번)부터 시작
-    setBoard();
-    setItems();
-    setTimer();
-    updateCrown(1); // 시작 시 흑 차례 왕관 표시
-    // 필요하다면 updateTurnLabel(1); // "내 차례" 레이블도 흑부터
-};
+    runApp = () => {
+        turn = 0;
+        setBoard();
+        setItems();
+        setTimer();
+        updateTimer(1);
+    };
 
-const PLAYERS = {
-    BLACK: { id: 1, name: "흑", label: "흑 player" },
-    WHITE: { id: 2, name: "백", label: "백 player" }
-};
-// 현재 플레이어를 구하는 함수
-// getCurrentPlayer 함수는 turn이 0일 때 흑(1번) 반환
-function getCurrentPlayer(turn) {
+    const PLAYERS = {
+    BLACK: { id: 1, name: "흑", label: "1st player" },
+    WHITE: { id: 2, name: "백", label: "2nd player" }
+    };
+
+    // 현재 플레이어를 구하는 함수
+    function getCurrentPlayer(turn) {
     return turn % 2 === 0 ? PLAYERS.BLACK : PLAYERS.WHITE;
-}
+    }
 
 function isForbidden(row, column, player) { // 함수명 변경
     // (1번 플레이어)만 금수 적용
@@ -135,9 +132,9 @@ function isForbidden(row, column, player) { // 함수명 변경
     return false;
 }
 
-// EX)
-// 3-3 체크: countOpenN(row, column, player, 3)
-// 4-4 체크: countOpenN(row, column, player, 4)'
+    // EX)
+    // 3-3 체크: countOpenN(row, column, player, 3)
+    // 4-4 체크: countOpenN(row, column, player, 4)'
 const EMPTY = 0;
 function countOpenN(row, column, player, n) {
     let count = 0;
@@ -158,8 +155,8 @@ function countOpenN(row, column, player, n) {
     return count;
 }
 
-// 6목(장목) 체크 함수
-function isOverline(row, column, player) {
+    // 6목(장목) 체크 함수
+    function isOverline(row, column, player) {
     const directions = [
         [1, 0], [0, 1], [1, 1], [1, -1]
     ];
@@ -280,7 +277,11 @@ function isOverline(row, column, player) {
     cell = event.target.cellProperties;
 
     /*
-    $.ajax({
+    // url의 쿼리스트링 gameId 추출
+    const params = new URLSearchParams(location.search);
+	const gameId = params.get('gameId');
+    
+	$.ajax({
 	  url: '/forestOfOmok/omokTurn',
 	  type: 'POST',
 	  contentType: 'application/json; charset=UTF-8',
@@ -304,15 +305,16 @@ function isOverline(row, column, player) {
     
     // 현재 플레이어 객체를 가져옴
     const currentPlayer = getCurrentPlayer(turn);
+    // 금수 체크
     let forbidden = isForbidden(cell.row, cell.column, currentPlayer.id);
     if (forbidden) {
-        showMessage(forbidden);
+        showMessage(forbidden); // 금수 메시지도 showMessage로 통일
         return;
     }
 
     if (map[cell.column][cell.row] === 0) {
         elemTimer.innerHTML = ticksToTime(0);
-        clearInterval(timer); // 항상 전역 timer만 clear
+        clearInterval(timer);
         setTimer();
 
         cell.player = currentPlayer.id;
@@ -320,7 +322,9 @@ function isOverline(row, column, player) {
 
         event.target.setAttribute("class", "fade-in player-" + cell.player);
 
+        // 다음 플레이어 차례 표시
         const nextPlayer = getCurrentPlayer(turn + 1);
+        // elemInfo.innerHTML = `${nextPlayer.label}'s turn`;
 
         turn++;
         showMessage(isPlayerWon(cell.player));
@@ -330,7 +334,7 @@ function isOverline(row, column, player) {
 
 setTimer = () => {
     clearInterval(timer); // 혹시 남아있던 타이머도 정지
-    let maxTime = 30;
+    let maxTime = 30; // 30초부터 0초로 떨어지도록 변경 
     const timerBox = document.querySelector('.timer-box');
     const timerText = document.getElementById("timer");
     timerText.innerText = `0:${maxTime < 10 ? '0' : ''}${maxTime}`;
@@ -434,6 +438,7 @@ function showAlertModal(msg) {
     };
 }
 
+
 function updateTimer(timeLeft) {
   const timerBox = document.querySelector('.timer-box');
   const timerText = document.getElementById('timer');
@@ -447,10 +452,6 @@ function updateTimer(timeLeft) {
   }
 }
 
-$(function () {
-  // modal.html 불러오기
-  $("#modalComponent").load("modal.html");
-});
 
 // 메뉴 버튼 클릭 시 드롭다운 토글
 document.getElementById("menuBtn").onclick = function(e) {
