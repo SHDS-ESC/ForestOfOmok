@@ -44,15 +44,26 @@ function connectWebSocket() {
             console.log("웹소켓이 연결되어 있지 않습니다.");
         }
     }
+
+    function appendChatMessage(msg, isMine) {
+	    const chatMessages = document.querySelector('.chat-messages');
+	    const div = document.createElement('div');
+	    div.className = isMine ? 'chat-message mine' : 'chat-message other';
+	    div.textContent = msg;
+	    chatMessages.appendChild(div);
+	    // 스크롤을 항상 아래로
+	    chatMessages.scrollTop = chatMessages.scrollHeight;
+	}
 }
 	
- var turn = 0; // turn을 전역으로 선언
+var turn = 0; // turn을 전역으로 선언
 var timer = null; // ★ timer를 전역으로 선언
 
 setConf = () => {
     const cellWidth = 35,
         elemInfo = document.getElementById("info"),
-        elemTimer = document.getElementById("timer")
+        elemTimer = document.getElementById("timer"),
+        elemMsg = document.getElementById("msg");
 
     var globalTime = 0,
         m = 15,
@@ -66,6 +77,7 @@ setConf = () => {
         cellWidth,
         elemInfo,
         elemTimer,
+        elemMsg,
         globalTime,
         m,
         k,
@@ -81,6 +93,7 @@ var {
     cellWidth,
     elemInfo,
     elemTimer,
+    elemMsg,
     globalTime,
     m,
     k,
@@ -438,6 +451,7 @@ $(function () {
   // modal.html 불러오기
   $("#modalComponent").load("modal.html");
 });
+
 // 메뉴 버튼 클릭 시 드롭다운 토글
 document.getElementById("menuBtn").onclick = function(e) {
   e.stopPropagation();
