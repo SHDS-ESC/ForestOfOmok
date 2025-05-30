@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -12,6 +13,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="../js/utils.js"></script>
+
 </head>
 <body>
 	<!-- 브금 제어 버튼 -->
@@ -25,156 +27,139 @@
 		id="moveGameBtn" />
 	<!-- 임시 버튼 -->
 	<!-- 임시 버튼 -->
-	<div class="container main">
-		<header>
-			<span></span>
-			<div class="searchBox">
-				<section class="input-container">
-					<label> <input id="searchInput" type="text"
-						placeholder="검색어 입력" />
-						<p class="hspan">검색어 입력</p>
-					</label>
-					<button type="button" class="search-btn">검색</button>
-				</section>
-			</div>
-		</header>
-		<div class="content">
-			<div class="sideBoxL">
-				<div class="profileBox">
-					<div class="img"></div>
-					<div class="textBox">
-						<p>닉네임 : 테스트</p>
-						<p>
-							<span class="blue">100</span> 승 <span class="red">1</span> 패
-						</p>
-						<p>
-							현재 순위 : <span class="yellow">1</span> 등
-						</p>
+	<!-- 로딩 화면 -->
+	<div id="loadingScreen"
+		style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 9999; display: flex; align-items: center; justify-content: center;">
+		<p style="font-size: 1.5rem;">로딩 중... 🍀</p>
+	</div>
+	<!-- 본문 전체 감싸기 -->
+	<div id="mainApp" style="display: none;">
+		<!-- 여기에 기존의 전체 컨텐츠 넣기 -->
+		<!-- 브금 제어 버튼, 임시 버튼, container 등 전부 이 안에 들어가야 함 -->
+
+		<div class="container main">
+			<header>
+				<span></span>
+				<div class="searchBox">
+					<section class="input-container">
+						<label> <input id="searchInput" type="text"
+							placeholder="검색어 입력" />
+							<p class="hspan">검색어 입력</p>
+						</label>
+						<button type="button" class="search-btn">검색</button>
+					</section>
+				</div>
+			</header>
+			<div class="content">
+				<div class="sideBoxL">
+					<div class="profileBox">
+						<div class="img"></div>
+						<div class="textBox">
+							<p>닉네임 : 테스트</p>
+							<p>
+								<span class="blue">100</span> 승 <span class="red">1</span> 패
+							</p>
+							<p>
+								현재 순위 : <span class="yellow">1</span> 등
+							</p>
+						</div>
+						<div class="createRommBtn"></div>
+					</div>
+					<div class="RankBox">
+						<!-- 여기부터 지원 작성 -->
+						<div class="rankTitle"></div>
+						<ul class="rankList">
+
+						</ul>
 					</div>
 					<div class="createRommBtn"></div>
 				</div>
-				<div class="RankBox">
-					<!-- 여기부터 지원 작성 -->
-					<div class="rankTitle"></div>
-					<ul class="rankList">
-						<li class="rankItem"><span class="rankProfileName"> 1등
-						</span> <span> <img class="rankProfile" src="../img/img-rank1.png" />
-						</span> <span class="rankProfileName"> 닉네임 </span></li>
-
-						<li class="rankItem"><span class="rankProfileName"> 2등
-						</span> <span> <img class="rankProfile" src="../img/img-rank1.png" />
-						</span> <span class="rankProfileName"> 닉네임 </span></li>
-
-						<li class="rankItem"><span class="rankProfileName"> 3등
-						</span> <span> <img class="rankProfile" src="../img/img-rank1.png" />
-						</span> <span class="rankProfileName"> 닉네임 </span></li>
+				<div class="sideBoxR">
+					<ul class="tabs">
+						<li class="active">게임하기 🎮</li>
+						<li>전적보기 🏆</li>
 					</ul>
-				</div>
-				<div class="createRommBtn"></div>
-			</div>
-			<div class="sideBoxR">
-				<ul class="tabs">
-					<li class="active">게임하기 🎮</li>
-					<li>전적보기 🏆</li>
-				</ul>
-				<div class="tabContainer">
-					<div>
-						<!-- 방 없을 때  -->
-						<div class="emptyRoom">
-							<span></span>
-							<p>아직 방이 없어요</p>
-							<p>방을 만들어서 시작해주세요!</p>
+					<div class="tabContainer">
+						<div>
+							<!-- 방 없을 때  -->
+							<div class="emptyRoom">
+								<span></span>
+								<p>아직 방이 없어요</p>
+								<p>방을 만들어서 시작해주세요!</p>
+							</div>
+							<!-- 방 있을 때 -->
+							<ul class="roomList" style="display: none">
+								<li class="roomItem play">
+									<p class="title">✨ 새 방 생성123</p>
+									<div class="text">
+										<span>play 🔥</span> 1 / 2
+									</div>
+								</li>
+								<li class="roomItem play">
+									<p class="title">🍀 힐링의 숲</p>
+									<div class="text">
+										<span>play 🔥</span> 1 / 2
+									</div>
+								</li>
+								<li class="roomItem play">
+									<p class="title">🌙 밤하늘의 방</p>
+									<div class="text">
+										<span>play 🔥</span> 1 / 2
+									</div>
+								</li>
+							</ul>
 						</div>
-						<!-- 방 있을 때 -->
-						<ul class="roomList" style="display: none">
-							<li class="roomItem play">
-								<p class="title">✨ 새 방 생성123</p>
-								<div class="text">
-									<span>play 🔥</span> 1 / 2
-								</div>
-							</li>
-							<li class="roomItem play">
-								<p class="title">🍀 힐링의 숲</p>
-								<div class="text">
-									<span>play 🔥</span> 1 / 2
-								</div>
-							</li>
-							<li class="roomItem play">
-								<p class="title">🌙 밤하늘의 방</p>
-								<div class="text">
-									<span>play 🔥</span> 1 / 2
-								</div>
-							</li>
-						</ul>
-					</div>
-					<div>
-						<!-- 방 없을 때  -->
-						<!-- <div class="emptyHistory">
+						<div>
+							<!-- 방 없을 때  -->
+							<!-- <div class="emptyHistory">
                 <span></span>
                 <p>아직 전적이 없어요</p>
                 <p>게임을 시작해보세요!</p>
               </div> -->
-						<!-- 전적 아이템 -->
-						<ul class="historyList">
-							<li>
-								<div class="historyItem">
-									<div class="historyItemL">
-										<span class="historyStoneInfoMe">승</span> <img
-											class="historyProfileMe" src="../img/img-rank1.png" />
-										<span class="historyNickNameMe">곰돌이</span>
-									</div>
-									<div class="historyItemR">
-										<span class="historyNickNameYou">앉아있는 고양이</span> <img
-											class="historyProfileYou" src="../img/img-rank1.png" />
-										<span class="historyStoneInfoYou">패</span>
-									</div>
-								</div>
-								<div class="historyPannel">
-									<div class="historyTime">시간 :</div>
-									<div class="historyTurn">턴수 :</div>
-								</div>
-							</li>
-
-							<li>
-								<div class="historyItem">
-									<div class="historyItemL">
-										<span class="historyStoneInfoMe">패</span> <img
-											class="historyProfileMe" src="../img/img-rank1.png" />
-										<span class="historyNickNameMe">앉아있는 고양이</span>
-									</div>
-									<div class="historyItemR">
-										<span class="historyNickNameYou">곰돌이</span> <img
-											class="historyProfileYou" src="../img/img-rank1.png" />
-										<span class="historyStoneInfoYou">승</span>
-									</div>
-								</div>
-								<div class="historyPannel">
-									<div class="historyTime">시간 :</div>
-									<div class="historyTurn">턴수 :</div>
-								</div>
-							</li>
-						</ul>
+							<!-- 전적 아이템 -->
+							<ul class="historyList">
+								
+							</ul>
+						</div>
+						<!-- style="display:none" -->
 					</div>
-					<!-- style="display:none" -->
 				</div>
 			</div>
 		</div>
-	</div>
-	<!-- 모달창 -->
-	<div id="modalComponent"></div>
-	<script>
-	
-    
-    
+		<!-- 방 생성 팝업 -->
+		<div id="createRoomModal"
+			style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 9999; justify-content: center; align-items: center;">
+			<div
+				style="background: white; padding: 20px; border-radius: 10px; text-align: center; width: 300px;">
+				<h2>방 제목 입력</h2>
+				<input type="text" id="roomTitleInput" placeholder="방 제목을 입력하세요"
+					style="width: 90%; padding: 8px; margin: 10px 0;" /> <br />
+				<button id="confirmCreateRoom">확인</button>
+				<button id="cancelCreateRoom">취소</button>
+			</div>
+		</div>
+		<!-- 모달창 -->
+		<div id="modalComponent"></div>
+		<script>
+		$(window).on("load", function () {
+		  // 로딩 화면 숨기기
+		  $("#loadingScreen").fadeOut(500, function () {
+		    $(this).remove(); // 완전히 제거 (선택사항)
+		  });
+
+		  // 본문 화면 보이기
+		  $("#mainApp").fadeIn(300);
+		});
+
       $(function () {
         let test = false; // 임시
         
         // api 템플릿
-    	let connectApi = function(url, method, callback) {
+    	let connectApi = function(url, method, data, callback) {
     	$.ajax({
         	url: url,
         	method: method,
-        	data: {},
+        	data: data,
         	dataType: "json",
         	success: function(res) {
             	console.log(res);
@@ -197,9 +182,34 @@
           $(".emptyRoom").hide(); // 방 없을때 메시지 숨김
           $(".roomList").show(); // 방 있을때 컴포넌트 display: none -> show 노출
 
-          // ul > li 태그 append로 붙이기
-          $(".roomList").append(`<li class="roomItem">${"✨ 새 방 생성"}</li>`);
-        });
+             let title = prompt("방 타이틀을 입력하세요");
+          let req = {
+        		  title:title
+          }
+          if(title){
+        	  console.log(title);
+        	  connectApi("http://localhost:8092/forestOfOmok/main/createRoom", "POST", req, function(data) {
+        		  if (data) {
+        		        console.log("받은 데이터:", data);
+        		        $(".roomList").prepend(`
+        		            <li class="roomItem"  data-game-id="${data.gameId}">
+        		                <p class="title">✨ ${data.title}</p>
+        		                <div class="text">
+        		                    <span>play 🔥</span> 1 / 2
+        		                </div>
+        		            </li>
+        		        `);
+        		    } else {
+                      // 실패했을 때 처리
+                  console.log("데이터 로딩 실패");
+                  }
+              });   
+          } else {
+        	  console.log("취소")
+          }
+          
+        }); 
+
 
         // 방 들어가기
         // 동적으로 추가된 방
@@ -249,38 +259,33 @@
         });
      
      // 버튼 클릭 시 열리고, 닫힘 토글
-        $(".historyItemL, .historyItemR").click(function () {
-          const historyItem = $(this).closest(".historyItem");
-          const historyPannel = historyItem.next(".historyPannel");
-          const isOpen = historyPannel.is(":visible");
-
-          // 초기화 (항목 하나만 열리게 하려면 주석 제거)
-          // $(".historyPannel").slideUp(300);
-          // $(".historyItem").css("border-radius", "20px");
-
-          if (isOpen) {
-            historyPannel.slideUp(300);
-            historyItem.css("border-radius", "20px");
-          } else {
-            historyPannel.slideDown(300);
-            historyItem.css({
-              "border-bottom-left-radius": "0",
-              "border-bottom-right-radius": "0",
-            });
-
-            // 색상 처리
-            const isLeft = $(this).hasClass("historyItemL");
-            if (isLeft) {
-              $(this).css("background-color", "black");
-              historyPannel.css("background-color", "black");
-              historyPannel.css("color", "white");
-            } else {
-              $(this).css("background-color", "white");
-              historyPannel.css("background-color", "white");
-              historyPannel.css("color", "black");
-            }
-          }
-        });
+       $(document).on("click", ".historyItemL, .historyItemR", function () {
+		  const historyItem = $(this).closest(".historyItem");
+		  const historyPannel = historyItem.closest("li").find(".historyPannel");
+		  const isOpen = historyPannel.is(":visible");
+		
+		  if (isOpen) {
+		    historyPannel.slideUp(300);
+		    historyItem.css("border-radius", "20px");
+		  } else {
+		    historyPannel.slideDown(300);
+		    historyItem.css({
+		      "border-bottom-left-radius": "0",
+		      "border-bottom-right-radius": "0",
+		    });
+		
+		    const isLeft = $(this).hasClass("historyItemL");
+		    if (isLeft) {
+		      $(this).css("background-color", "black");
+		      historyPannel.css("background-color", "black");
+		      historyPannel.css("color", "white");
+		    } else {
+		      $(this).css("background-color", "white");
+		      historyPannel.css("background-color", "white");
+		      historyPannel.css("color", "black");
+		    }
+		  }
+		});
 
         let slideOpen = function (direction, paddingSelf, paddingTarget) {
           $(this).css({
@@ -306,45 +311,30 @@
           });
         };
 
-        // 왼쪽 hover 시
-        $(".historyItemL").hover(
-          function () {
-            console.log("historyItemL");
-            slideOpen.call(this, ".historyItemR", "10px 0", "10px 0"); // L 점령
-          },
-          function () {
-            slideClose.call(
-              this,
-              ".historyItemR",
-              "10px 5px 10px 0",
-              "10px 0 10px 5px"
-            );
-          }
-        );
-
-        // 오른쪽 hover 시
-        $(".historyItemR").hover(
-          function () {
-            console.log("historyItemR");
-            slideOpen.call(this, ".historyItemL", "10px 0", "10px 0"); // R 점령
-          },
-          function () {
-            slideClose.call(
-              this,
-              ".historyItemL",
-              "10px 0 10px 5px",
-              "10px 5px 10px 0"
-            );
-          }
-        );
+        /// 왼쪽 hover 시
+		$(".historyList").on("mouseenter", ".historyItemL", function () {
+		  slideOpen.call(this, ".historyItemR", "10px 0", "10px 0");
+		});
+		$(".historyList").on("mouseleave", ".historyItemL", function () {
+		  slideClose.call(this, ".historyItemR", "10px 5px 10px 0", "10px 0 10px 5px");
+		});
+		
+		// 오른쪽 hover 시
+		$(".historyList").on("mouseenter", ".historyItemR", function () {
+		  slideOpen.call(this, ".historyItemL", "10px 0", "10px 0");
+		});
+		$(".historyList").on("mouseleave", ".historyItemR", function () {
+		  slideClose.call(this, ".historyItemL", "10px 0 10px 5px", "10px 5px 10px 0");
+		});
      
+        
      
 
-        connectApi("http://localhost:8092/forestOfOmok/main/profile", "GET", function(data) {
+        connectApi("http://localhost:8092/forestOfOmok/main/profile", "GET",{}, function(data) {
             if (data) {
                 // 성공했을 때 처리
             console.log("받은 데이터:", data);
-                $(".profileBox .img").css("background-image", "url(" + data.imgPath + ")"); // 프로필
+            $(".profileBox .img").css("background-image", `url('${data.imgPath}')`);
                 $(".textBox p:first").text(data.name); // 닉네임
                 $(".blue").text(data.winCnt); // 승
                 $(".red").text(data.loseCnt); // 패
@@ -354,7 +344,98 @@
             console.log("데이터 로딩 실패");
             }
         });      
-     })
+        
+        connectApi("http://localhost:8092/forestOfOmok/main/rank", "GET", {},function(data) {
+        	  if (data) {
+        	    console.log("받은 데이터:", data);
+      	      //$(".profileBox .img").css("background-image", `url('${data.imgPath}')`);
+      	      //http://localhost:8092/forestOfOmok/img/profileImg5.png
+
+        	    // rank 배열을 반복
+        	    data.rank.forEach(function(item) {
+        	    	$(".rankList").append(
+        	    			  `<li class="rankItem">
+        	    			    <span class="rankProfileName">${item.rank}등</span>
+        	    			    <img id="rankProfile" src="http://localhost:8092${item.profile}" style="width: 30px; height: 30px;" />
+        	    			    <span class="rankProfileName">${item.name}</span>
+        	    			  </li>`
+        	    			);
+        	    	
+        	    });
+        	  } else {
+        	    console.log("데이터 로딩 실패");
+        	  }
+        	});
+        
+        	
+        
+        connectApi("http://localhost:8092/forestOfOmok/main/getRoomList", "GET", {}, function(data) {
+        	if (data) {
+        		$(".emptyRoom").css("display","none");
+        		$(".roomList").css("display","block");
+                console.log("방 리스트:", data);
+                $(".roomList").empty(); // 기존 목록 비우기
+                data.forEach(room => {
+                    $(".roomList").prepend(`
+                        <li class="roomItem">
+                            <p class="title">✨ ${room.title}</p>
+                            <div class="text">
+                                <span>play 🔥</span> 1 / 2
+                            </div>
+                        </li>
+                    `);
+                });
+            }  else {
+                // 실패했을 때 처리
+            console.log("데이터 로딩 실패");
+            }
+        });
+
+        
+        connectApi("http://localhost:8092/forestOfOmok/main/history", "GET",{}, function (data) {
+        	  if (data && data.history) {
+        	    console.log("받은 데이터:", data);
+
+        	    data.history.forEach(function (item) {
+        	      const isMeLeft = item.winnerColor === "black";
+
+        	      const leftHTML = `
+        	        <span class="historyStoneInfoMe">${isMeLeft ? "승" : "패"}</span>
+        	        <img id="historyProfileMe" src="http://localhost:8092${item.imgPath}" style="width: 30px; height: 30px; border-radius: 50%; margin: 0px 10px;" />
+        	        <span class="historyNickNameMe">${isMeLeft ? item.winnerName : item.loserName}</span>
+        	      `;
+
+        	      const rightHTML = `
+        	        <span class="historyNickNameYou">${isMeLeft ? item.loserName : item.winnerName}</span>
+        	        <img id="historyProfileYou" src="http://localhost:8092${item.imgPath}" style="width: 30px; height: 30px; border-radius: 50%; margin: 0px 10px;" />
+        	        <span class="historyStoneInfoYou">${isMeLeft ? "패" : "승"}</span>
+        	      `;
+
+        	      const html = `
+        	        <li>
+        	          <div class="historyItem">
+        	            <div class="historyItemL">
+        	              ${leftHTML}
+        	            </div>
+        	            <div class="historyItemR">
+        	              ${rightHTML}
+        	            </div>
+        	          </div>
+        	          <div class="historyPannel">
+        	            <div class="historyTime">시간 : ${item.time}</div>
+        	            <div class="historyTurn">턴수 : ${item.turnCount}</div>
+        	          </div>
+        	        </li>
+        	      `;
+
+        	      $(".historyList").append(html);
+        	    });
+        	  } else {
+        	    console.log("데이터 로딩 실패");
+        	  }
+        	});
+
+      });
     </script>
 </body>
 </html>

@@ -30,12 +30,10 @@ public class JoinServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		request.setCharacterEncoding("UTF-8");
 
-		
-
 		System.out.println("result");
 	
-		String userId = request.getParameter("userId");
-		System.out.println(userId + "아이디");
+		String name = request.getParameter("name");
+		System.out.println(name + "아이디");
 		// 객체 생성 및 값 세팅
 		User user = new User();
 		user.setUserId(request.getParameter("userId"));
@@ -44,9 +42,10 @@ public class JoinServlet extends HttpServlet {
 		user.setName(request.getParameter("name"));
 		user.setEmail(request.getParameter("email"));
 		
+		//아이디 중복체크
 		if ("1".equals(request.getParameter("check"))) {
 			UserDAO dao = new UserDAO();
-			boolean exists = dao.isUserIdExists(userId);
+			boolean exists = dao.isUserIdExists(name);
 
 			response.setContentType("application/json;charset=UTF-8");
 			response.getWriter().write("{\"exists\":" + exists + "}");
@@ -56,19 +55,20 @@ public class JoinServlet extends HttpServlet {
 		// DAO 호출
 		UserDAO dao = new UserDAO();
 		int result = dao.insertUser(user);
-		System.out.println(userId + "result");
+		
+		System.out.println("결과" + result);
 
 		if (result > 0) {
 			// 회원가입 성공 시 login.html로 포워드
 			HttpSession session = request.getSession();
 			session.setAttribute("userId", user.getUserId());
-			System.out.println("성공");
-			request.getRequestDispatcher("/login").forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/login");
 
 
 		} else {
 			// 실패 시 다시 join.html로 포워드
 			request.setAttribute("error", "회원가입 실패. 다시 시도해주세요.");
+			System.out.println(name);
 			request.getRequestDispatcher("/html/join.html").forward(request, response);
 		}
 	}
