@@ -205,11 +205,12 @@
       </div>
     </div>
 
+    <!-- 모달 컴포넌트 -->
     <div id="modalComponent" style="opacity: 0"></div>
-    <script src="html/main.js"></script>
     <!-- 채팅 박스 -->
     <div id="chatbox">
       <div class="chat-header">채팅</div>
+      <!-- 이모티콘 버튼 부분 교체 -->
       <div class="chat-emoticons">
         <button class="emoticon-btn">
           <img
@@ -272,6 +273,8 @@
         <button id="alertCloseBtn">확인</button>
       </div>
     </div>
+
+    <!-- 왼쪽 아래에 오목 규칙 & 꿀팁 슬라이드 박스 추가 -->
     <div class="omokRuleBox omokRuleBox-left">
       <div class="omokRuleBox-inner">
         <button class="omokRuleBox-nav omokRuleBox-prev" aria-label="이전" onclick="showRuleSlide(-1)">&#8592;</button>
@@ -303,6 +306,31 @@
         <span class="omokRuleBox-dot" onclick="goRuleSlide(1)"></span>
       </div>
     </div>
+    <!-- Ready Modal -->
+<div id="readyModal" style="
+  display: block;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.45);
+  z-index: 9999;
+">
+  <div style="
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+    padding: 40px 60px;
+    text-align: center;
+  ">
+    <div style="font-size:1.3em; margin-bottom:18px;">플레이어 준비</div>
+    <button id="readyBtn1" style="margin: 0 20px;">1P 레디</button>
+    <button id="readyBtn2" style="margin: 0 20px;">2P 레디</button>
+    <div id="readyStatus" style="margin-top:18px; color:#0095ff;"></div>
+  </div>
+</div>
     <script>
       // 슬라이드 인덱스
       let ruleSlideIdx = 0;
@@ -325,5 +353,6 @@
         dots[ruleSlideIdx].classList.add('omokRuleBox-dot-active');
       }
     </script>
+    <script src="html/main.js"></script>
   </body>
 </html>
