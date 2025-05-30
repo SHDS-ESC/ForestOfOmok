@@ -110,7 +110,8 @@ body#login,
     letter-spacing: 4px;
 }
 
-.loginBtn {
+button.loginBtn {
+	all : unset;
     width: 180px;
     background-image: url("/forestOfOmok/img/Group%2025.png");
     background-position: center;
@@ -119,9 +120,10 @@ body#login,
     height: 80px;
     margin: auto;
     cursor: pointer;
+    display : block;
 }
 
-.loginBtn:hover {
+button.loginBtn:hover {
     background-image: url("/forestOfOmok/img/Group%2024.png");
 }
 
