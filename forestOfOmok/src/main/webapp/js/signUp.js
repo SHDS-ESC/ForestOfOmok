@@ -52,6 +52,9 @@ function selectImage(imgElement) {
       });
       imgElement.classList.add("selected");
       selectedImgSrc = imgElement.src;
+      
+	const selectedId = imgElement.getAttribute("data-img-id");
+	document.getElementById("imgId").value = selectedId;
     }
 
 function applySelectedImage() {

@@ -8,6 +8,41 @@
     <link rel="stylesheet" href="/forestOfOmok/css/login.css" />
     <link rel="icon" href="/forestOfOmok/img/sec05_chara02.png" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+ 	<style>
+button.findBtn {
+	all: unset;
+	width: 180px;
+	background-image: url("/forestOfOmok/img/findBtnBold.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	height: 80px;
+	margin: auto;
+	cursor: pointer;
+	display: block;
+}
+
+.red {
+    color: #0095ff;
+    font-size: 16px;
+    text-align: center;
+    display: block;
+    margin-top: -11px;
+    font-family: 'yg-jalnan';
+    background-color: #f0f8ff;
+    padding: 8px 23px;
+    border-radius: 20px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	
+}
+
+button.findBtn:hover {
+	background-image: url("/forestOfOmok/img/findBtn.png");
+}
+</style>
   </head>
   <body id="login">
     <div class="container login">
@@ -15,26 +50,41 @@
       <div class="content">
         <div class="loginBox">
           <h2>아이디 찾기</h2>
-          <form>
+          <form onsubmit = "findNickname(); return false;">
             <div class="userBox">
-              <input type="text" name="name" required="" />
-              <label>이름</label>
-            </div>
-            <div class="userBox">
-              <input type="text" name="email" required="" />
+              <input type="text" name="email" id = "email" required="" />
               <label>이메일</label>
+              
+              <span class = "red" id = "nameResult"></span>
             </div>
-            <div class="assign" onclick="location.href='/forestOfOmok/html/findPwd.html'">
-              비밀번호 찾기
-            </div>
-            <div
-              class="loginBtn"
-              onclick="location.href='/forestOfOmok/html/login.html'"
-            ></div>
+            <button class="findBtn" type = "submit"></button>
           </form>
         </div>
       </div>
       <footer></footer>
     </div>
+    
+    <script>
+    $(function(){
+    	$("#nameResult").css("opacity",0);
+})
+  function findNickname() {
+    const email = document.getElementById("email").value;
+
+    $.ajax({
+      type: "POST",
+      url: "/forestOfOmok/findId", // 서블릿 주소
+      data: { email: email },
+      success: function(response) {
+    	  $("#nameResult").css("opacity",1);
+        $("#nameResult").text(response); // 서버에서 받은 텍스트를 출력
+      },
+      error: function() {
+    	  $("#nameResult").css("opacity",1);
+        $("#nameResult").text("에러가 발생했습니다.");
+      }
+    });
+  }
+</script>
   </body>
 </html>

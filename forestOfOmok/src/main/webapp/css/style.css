@@ -118,7 +118,7 @@ footer {
 .modal p .pink {
   color: rgb(255, 107, 132);
 }
-.modal p .blue {
+.modal p .bluee {
   color: rgb(67, 171, 211);
 }
 .modal p .yellow {
@@ -1495,7 +1495,7 @@ canvas {
   width: 500px;
 }
 .roomItem .text {
-  width: 100px;
+  width: 130px;
   text-align: right;
 }
 
@@ -1673,6 +1673,9 @@ canvas {
   margin-left: 80px;
 }
 .container.main .sideBoxL .rankItem {
+	    display: flex;
+    justify-content: flex-start;
+    align-items: center;
   background-color: #ffffffe7;
   margin-bottom: 8px;
   border-radius: 15px;
